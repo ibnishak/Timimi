@@ -6,9 +6,9 @@ myPort.postMessage({greeting: "hello from content script"});
 myPort.onMessage.addListener(function(m) {
   console.log("In content script, received message from background script: ");
   console.log(m.greeting);
- // myPort.postMessage({greeting: "Now we are sending messages back"});
+  myPort.postMessage({greeting: "Now we are sending messages back"});
 });
 
-document.body.addEventListener("click", function() {
-  myPort.postMessage({greeting: "they clicked the page!"});
-});
+// document.body.addEventListener("click", function() {
+//   myPort.postMessage({greeting: "they clicked the page!"});
+// });
