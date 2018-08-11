@@ -1,15 +1,15 @@
 {
 
-  "description": "Read it later- Add to Shiori",
+  "description": "KeepTW",
   "manifest_version": 2,
-  "name": "Shiori",
+  "name": "KeepTW",
   "version": "1.0",
   "icons": {
     "48": "icons/index.svg"
   },
   "applications": {
     "gecko": {
-      "id": "shiori@tesseract.com",
+      "id": "keeptw@tesseract.com",
       "strict_min_version": "50.0"
     }
   },
