@@ -5,13 +5,20 @@ function connected(p) {
   portFromCS.postMessage({greeting: "hi there content script!"});
   portFromCS.onMessage.addListener(function(m) {
     console.log("In background script, received message from content script")
-    console.log(m.greeting);
+    console.log(m.path);
+    console.log(m.messageId);
+  var sending = browser.runtime.sendNativeMessage(
+       "keeptw",m);
+  sending.then(onResponse, onError);
   });
 }
 
 browser.runtime.onConnect.addListener(connected);
 
+function onResponse(response) {
+    console.log("Received " + response);
+}
 
-// On connect  -> bg posts hi there, bg receieves a reply - bg consoles it
-// then the power moves to content script - it consoles and posts message
-// once bg receives the message it posted - it consoles it
+function onError(error) {
+    console.log(`Error: ${error}`);
+}
