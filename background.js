@@ -2,11 +2,9 @@ var portFromCS;
 
 function connected(p) {
   portFromCS = p;
-  portFromCS.postMessage({greeting: "hi there content script!"});
+  portFromCS.postMessage({message: "Initiate"});
   portFromCS.onMessage.addListener(function(m) {
-    console.log("In background script, received message from content script")
-    console.log(m.path);
-    console.log(m.messageId);
+    console.log("Saving to" + m.path);
   var sending = browser.runtime.sendNativeMessage(
        "keeptw",m);
   sending.then(onResponse, onError);
@@ -16,7 +14,7 @@ function connected(p) {
 browser.runtime.onConnect.addListener(connected);
 
 function onResponse(response) {
-    console.log("Received " + response);
+    portFromCS.postMessage({message: "Saved-Successfully"});
 }
 
 function onError(error) {
