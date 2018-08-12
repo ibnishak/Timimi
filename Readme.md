@@ -13,18 +13,42 @@ The set up is currently complete for Linux and Mac users. Windows workflow is sl
 
 
 
-### Usage:
+### Installation:
 
 #### Linux
 
 Debian derivatives(Debian, Ubuntu, Linux Mint etc), Arch Derivatives (Arch, Antergos, Manjaro)
 
+* Step 1: Run
+
 ```
-git clone --depth=1 https://github.com/ibnishak/Timimi.git
-cp -r Timimi/native-messaging-hosts $HOME/.mozilla
-sed -ie "s/richie/$USER/" $HOME/.mozilla/native-messaging-hosts/timimi.json
-cp Timimi/addons/web-ext-artifacts/timimi-1.3-an+fx.xpi $HOME
+sh -c "$(wget https://raw.githubusercontent.com/ibnishak/Timimi/master/InstallScript/linux.sh -O -)"
 ```
+
+* Step 2 : In your home folder you will find **timimi.xpi**. Drag and drop it to Firefox addon manager page (about:addons).
+
+
+
+If you do not have git and wget installed in your system, or if the install script is throwing errors, follow the steps given below.
+
+* Download the repo from **https://github.com/ibnishak/Timimi**
+* Unzip the downloaded file and open the folder.
+* Open **native-messaging-hosts/timimi.json** and change the name `richie` in the path key to your username. 
+** Find your username by typing `echo $USER` in your terminal
+* Copy **native-messaging-hosts** folder to ~/.mozilla. 
+** If you already have a **native-messaging-hosts** folder in ~/.mozilla, you can safely merge them.
+* In **Timimi/addons/web-ext-artifacts** you will find **timimi.xpi**. Drag and drop it to Firefox addon manager page (about:addons).
+
+
+### Mac
+
+* Download the repo from **https://github.com/ibnishak/Timimi**
+* Unzip the downloaded file and open the folder.
+* Open **native-messaging-hosts/timimi.json** and change the path to **~/Library/Application Support/Mozilla/NativeMessagingHosts/timimi.py**
+* From **native-messaging-hosts** folder, copy timimi.json and timimi.py to **~/Library/Application Support/Mozilla/NativeMessagingHosts/**
+* In **Timimi/addons/web-ext-artifacts** you will find **timimi.xpi**. Drag and drop it to Firefox addon manager page (about:addons).
+
+
 
 #### Windows:
 Need more time.
