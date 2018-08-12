@@ -40,7 +40,7 @@ If you do not have git and wget installed in your system, or if the install scri
 * In **Timimi/addons/web-ext-artifacts** you will find **timimi.xpi**. Drag and drop it to Firefox addon manager page (about:addons).
 
 
-### Mac
+### Mac - untested
 
 * Download the repo from **https://github.com/ibnishak/Timimi**
 * Unzip the downloaded file and open the folder.
