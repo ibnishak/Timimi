@@ -1,7 +1,7 @@
 var twport = browser.runtime.connect({ name: "port-from-cs" });
 var idGenerator = 1;
 
-
+// Checking if the active tab is a  local tiddlywiki file
 function checkTW() {
     var results = {};
     // Test for TiddlyWiki Classic
@@ -36,6 +36,7 @@ if (checkTWResults.isTiddlyWiki5 && checkTWResults.isLocalFile) {
         messageBox.style.display = "none";
         document.body.appendChild(messageBox);
     }
+    // Listen to initiate message from background script
     twport.onMessage.addListener(function(m) {
         console.log(m.message);
         // Attach the event handler to the message box
@@ -48,13 +49,23 @@ if (checkTWResults.isTiddlyWiki5 && checkTWResults.isLocalFile) {
                 content = messageElement.getAttribute("data-tiddlyfox-content"),
                 backupPath = messageElement.getAttribute("data-tiddlyfox-backup-path"),
                 messageId = "tiddlywiki-save-file-response-" + idGenerator++;
-            twport.postMessage({ path: path, messageId: messageId, content: content, backupPath: backupPath });
-            messageElement.parentNode.removeChild(messageElement);
-            console.log("Message ID is " + messageId);
-            var event = document.createEvent("Events");
-            event.initEvent("tiddlyfox-have-saved-file", true, false);
-            event.savedFilePath = path;
-            messageElement.dispatchEvent(event);
+            // Send the details to background script. Not using port because we need a promise and port.postMessage is not a promise
+            var sending = browser.runtime.sendMessage({ path: path, messageId: messageId, content: content, backupPath: backupPath });
+            sending.then(handleResponse, handleError);
+
+            function handleResponse(message) {
+                messageElement.parentNode.removeChild(messageElement);
+                console.log("Saved successfully to " + path);
+                console.log("Message ID is " + messageId);
+                var event = document.createEvent("Events");
+                event.initEvent("tiddlyfox-have-saved-file", true, false);
+                event.savedFilePath = path;
+                messageElement.dispatchEvent(event);
+            }
+
+            function handleError() {
+                console.log(`Error: ${error}`);
+            }
         }
     });
 } else {

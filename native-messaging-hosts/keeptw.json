@@ -1,0 +1,7 @@
+{
+  "name": "keeptw",
+  "description": "Add to tw",
+  "path": "/home/richie/.mozilla/native-messaging-hosts/keeptw.py",
+  "type": "stdio",
+  "allowed_extensions": [ "keeptw@tesseract.com" ]
+}

@@ -1,1 +1,0 @@
-on connection - back ground script sends a message
