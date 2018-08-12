@@ -65,8 +65,8 @@ Need more time.
 ### Pros
 
 1. Webextension host can be expanded for different purposes depending on personal preferences. For eg:
- * Saving time stamped backups instead of overwrting.
- * Monitor changes to a tiddler and enter it to a local relational database like sqlite.
+  * Saving time stamped backups instead of overwrting.
+  * Monitor changes to a tiddler and enter it to a local relational database like sqlite.
 
 2. It can be easily ported over to chrome
 3. No need to run a server, does not require continued user interactions
