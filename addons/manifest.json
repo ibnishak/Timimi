@@ -3,7 +3,7 @@
     "description": "Firefox addon to save Tiddlywiki",
     "manifest_version": 2,
     "name": "timimi",
-    "version": "1.1",
+    "version": "1.3",
     "icons":
     {
         "16": "icons/index.svg",
