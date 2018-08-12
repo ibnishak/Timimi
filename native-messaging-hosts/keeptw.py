@@ -3,7 +3,6 @@
 import sys
 import json
 import struct
-import os
 
 try:
     # Python 3.x version
@@ -16,14 +15,14 @@ try:
         message = sys.stdin.buffer.read(messageLength).decode('utf-8')
         return json.loads(message)
 
-        # Encode a message for transmission,
-        # given its content.
+    # Encode a message for transmission,
+    # given its content.
     def encodeMessage(messageContent):
         encodedContent = json.dumps(messageContent).encode('utf-8')
         encodedLength = struct.pack('@I', len(encodedContent))
         return {'length': encodedLength, 'content': encodedContent}
 
-        # Send an encoded message to stdout
+    # Send an encoded message to stdout
     def sendMessage(encodedMessage):
         sys.stdout.buffer.write(encodedMessage['length'])
         sys.stdout.buffer.write(encodedMessage['content'])
@@ -34,9 +33,6 @@ try:
         with open(receivedMessage["path"], 'w') as file:
             file.write("%s" % (receivedMessage["content"]))
         sendMessage(encodeMessage("success"))
-
-
-
 except AttributeError:
     # Python 2.x version (if sys.stdin.buffer is not defined)
     # Read a message from stdin and decode it.
@@ -61,8 +57,9 @@ except AttributeError:
         sys.stdout.write(encodedMessage['content'])
         sys.stdout.flush()
 
-   while True:
+    while True:
         receivedMessage = getMessage()
-        f = open(receivedMessage["path"], 'w')
+        file=open(receivedMessage["path"],"w")
         file.write("%s" % (receivedMessage["content"]))
-        f.close()
+        file.close()
+        sendMessage(encodeMessage("success"))
