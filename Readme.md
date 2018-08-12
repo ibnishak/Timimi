@@ -1,3 +1,7 @@
+
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+
+
 Tiddlyfox addon for firefox browser stopped working for post 57 versions of firefox when mozilla switched over to sandbox model, restricting access to the file system. However webextension addons provide APIs which interface with filesystem. This is an addon using native messaging, essentially handing over the contents to a webextension host which does the actual saving. For the end user it means a couple of extra steps to install the addon but once installed, you can save the standalone TW from anywhere in your harddrive without any more interactions, like the original Tiddlyfox addon did.
 
 The set up is currently complete for Linux and Mac users. Windows workflow is slightly different and since I do not have a windows machine to test, I cannot provide assistance. However core of the application remains the same, and the work to port it for chrome browser and windows platform would be minimal. The principle followed can be used to develop addons for Edge browser too, for those so inclined.
