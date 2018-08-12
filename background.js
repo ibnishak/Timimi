@@ -22,7 +22,7 @@ function onError(error) {
 function handleMessage(request, sender, sendResponse) {
     console.log("Sending native message");
     var sending = browser.runtime.sendNativeMessage(
-        "keeptw", request);
+        "timimi", request);
     sending.then(onResponse, onError);
 }
 

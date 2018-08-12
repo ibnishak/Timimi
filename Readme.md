@@ -2,7 +2,7 @@ Tiddlyfox addon for firefox browser stopped working for post 57 versions of fire
 
 The set up is currently complete for Linux and Mac users. Windows workflow is slightly different and since I do not have a windows machine to test, I cannot provide assistance. However core of the application remains the same, and the work to port it for chrome browser and windows platform would be minimal. The principle followed can be used to develop addons for Edge browser too, for those so inclined.
 
-#### Requirements:
+### Requirements:
 
 * Firefox >57
 * Python - usually installed by default in linux systems

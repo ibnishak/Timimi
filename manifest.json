@@ -1,18 +1,21 @@
 {
 
-    "description": "KeepTW",
+    "description": "Firefox addon to save Tiddlywiki",
     "manifest_version": 2,
-    "name": "KeepTW",
-    "version": "1.0",
+    "name": "timimi",
+    "version": "1.1",
     "icons":
     {
-        "48": "icons/index.svg"
+        "16": "icons/index.svg",
+        "32": "icons/index.svg",
+        "48": "icons/index.svg",
+        "96": "icons/index.svg"
     },
     "applications":
     {
         "gecko":
         {
-            "id": "keeptw@tesseract.com",
+            "id": "timimi@tesseract.com",
             "strict_min_version": "50.0"
         }
     },
@@ -28,20 +31,12 @@
     },
     "content_scripts": [
     {
-        "matches": ["<all_urls>"],
+        "matches": ["file:///*"],
         "js": ["content-script.js"]
     }],
     "permissions": [
         "nativeMessaging",
         "activeTab",
-        "tabs",
-        "notifications"
-    ],
-    "icons":
-    {
-        "16": "icons/index.svg",
-        "32": "icons/index.svg",
-        "48": "icons/index.svg",
-        "96": "icons/index.svg"
-    }
+        "tabs"
+    ]
 }

@@ -1,0 +1,7 @@
+{
+  "name": "timimi",
+  "description": "Native messaging host to save TW5",
+  "path": "/home/richie/.mozilla/native-messaging-hosts/timimi.py",
+  "type": "stdio",
+  "allowed_extensions": [ "timimi@tesseract.com" ]
+}
