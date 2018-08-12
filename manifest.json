@@ -1,34 +1,47 @@
 {
 
-  "description": "KeepTW",
-  "manifest_version": 2,
-  "name": "KeepTW",
-  "version": "1.0",
-  "icons": {
-    "48": "icons/index.svg"
-  },
-  "applications": {
-    "gecko": {
-      "id": "keeptw@tesseract.com",
-      "strict_min_version": "50.0"
-    }
-  },
-  "background": {
-    "scripts": ["background.js"]
-  },
+    "description": "KeepTW",
+    "manifest_version": 2,
+    "name": "KeepTW",
+    "version": "1.0",
+    "icons":
+    {
+        "48": "icons/index.svg"
+    },
+    "applications":
+    {
+        "gecko":
+        {
+            "id": "keeptw@tesseract.com",
+            "strict_min_version": "50.0"
+        }
+    },
+    "background":
+    {
+        "scripts": ["background.js"]
+    },
 
-  "browser_action": {
-	   "browser_style": true,
-	   "default_icon": "icons/index.svg"
-  },
-    "content_scripts": [{
+    "browser_action":
+    {
+        "browser_style": true,
+        "default_icon": "icons/index.svg"
+    },
+    "content_scripts": [
+    {
         "matches": ["<all_urls>"],
         "js": ["content-script.js"]
     }],
-  "permissions": [
-      "nativeMessaging",
-      "activeTab",
-      "tabs",
-      "notifications"
-    ]
+    "permissions": [
+        "nativeMessaging",
+        "activeTab",
+        "tabs",
+        "notifications"
+    ],
+    "icons":
+    {
+        "16": "icons/index.svg",
+        "32": "icons/index.svg",
+        "48": "icons/index.svg",
+        "96": "icons/index.svg"
+    }
 }
