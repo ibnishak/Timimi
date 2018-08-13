@@ -1,10 +1,14 @@
-<div>
- 
-<img src="https://raw.githubusercontent.com/ibnishak/Timimi/master/images/fish.png" width="400" style="margin-left: auto;margin-right: auto;display: block;max-width: 50%;"/>
-</div>
+<p align="center"> 
+<img src="https://raw.githubusercontent.com/ibnishak/Timimi/master/images/fish.png" width=400/>
+</p>
 
-[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+<p align="center">
 
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)  [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/ibnishak/timimi/graphs/commit-activity)  [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)  [![GitHub stars](https://img.shields.io/github/stars/ibnishak/timimi.svg?style=social&label=Star&maxAge=2592000)](https://GitHub.com/ibnishak/timimi/stargazers/)  [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
+
+</p>
+
+Timimi is a webextension for firefox that allows it to save standalone tiddlywiki files.
 
 Tiddlyfox addon for firefox browser stopped working for post 57 versions of firefox when mozilla switched over to sandbox model, restricting access to the file system. However webextension addons provide APIs which interface with filesystem. This is an addon using native messaging, essentially handing over the contents to a webextension host which does the actual saving. For the end user it means a couple of extra steps to install the addon but once installed, you can save the standalone TW from anywhere in your harddrive without any more interactions, like the original Tiddlyfox addon did.
 
