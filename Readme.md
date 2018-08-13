@@ -1,3 +1,7 @@
+<div>
+ 
+<img src="https://raw.githubusercontent.com/ibnishak/Timimi/master/images/fish.png" width="400" style="margin-left: auto;margin-right: auto;display: block;max-width: 50%;"/>
+</div>
 
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
