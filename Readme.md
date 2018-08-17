@@ -88,8 +88,11 @@ If you do not have git and wget installed in your system, or if the install scri
 
 
 #### Windows:
-Need more time.
+* Download and unzip the latest **win-firefox.zip** from [releases page](https://github.com/ibnishak/Timimi/releases)
+* Run "install.bat"
+* Drag and drop "timimi.xpi" to the firefox browser and install the addon.
 
+Now open a local tiddlywiki and make a series of changes and save. Wait for 5 secs and reload the tab to ensure that changes are being saved.
 
 
 ### Status
