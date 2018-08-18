@@ -1,4 +1,4 @@
-<p align="center"> 
+<p align="center">
 <img src="https://raw.githubusercontent.com/ibnishak/Timimi/master/images/fish.png" width=400/>
 </p>
 
@@ -25,93 +25,73 @@
 
 <br/><br/><br/>
 
-* [Intro:](#intro)
-* [Requirements:](#requirements)
-* [Installation:](#installation)
-  * [Linux](#linux)
-  * [Mac - untested](#mac---untested)
-  * [Windows:](#windows)
-* [Status](#status)
-* [Pros](#pros)
-* [Cons](#cons)
+
 
 ### Intro
 
-Timimi is a webextension for firefox that allows it to save standalone tiddlywiki files.
+Timimi is a webextension for firefox, chrome and chromium that allows it to save standalone tiddlywiki files.
 
-Tiddlyfox addon for firefox browser stopped working for post 57 versions of firefox when mozilla switched over to sandbox model, restricting access to the file system. However webextension addons provide APIs which interface with filesystem. This is an addon using native messaging, essentially handing over the contents to a webextension host which does the actual saving. For the end user it means a couple of extra steps to install the addon but once installed, you can save the standalone TW from anywhere in your harddrive without any more interactions, like the original Tiddlyfox addon did.
+Tiddlyfox addon for firefox browser stopped working for post 57 versions of firefox when mozilla switched over to sandbox model, restricting access to the file system. However webextension addons provide APIs which interface with filesystem. This is an addon using native messaging, essentially handing over the contents to a webextension host which does the actual saving. For the end user it means a couple of extra steps to install the addon but once installed, you can save the standalone TW from anywhere in your harddrive without any more interactions, like the original Tiddlyfox addon.
 
-The set up is currently complete for Linux and Mac users. Windows workflow is slightly different and since I do not have a windows machine to test, I cannot provide assistance. However core of the application remains the same, and the work to port it for chrome browser and windows platform would be minimal. The principle followed can be used to develop addons for Edge browser too, for those so inclined.
 
-### Requirements:
+
+### Supported browsers:
+
 
 * Firefox >57
-* Python - usually installed by default in linux systems
+* Chrome >54
+* Chromium
 
+### Supported OS:
+
+* OSX
+* Windows >7
+* Debian based systems - Debian, Ubuntu, Elementary, Mint etc
+* Arch based systems - Arch Linux, Antergos, Manjaro etc
 
 
 ### Installation:
 
-#### Linux
+#### Firefox
 
-Debian derivatives(Debian, Ubuntu, Linux Mint etc), Arch Derivatives (Arch, Antergos, Manjaro)
+* Download the platform specific file from [release pages](https://github.com/ibnishak/Timimi/releases/tag/v1.0.0) and unzip it.
+* Run the install script.
+* Drag and drop timimi.xpi to **about:addons** page in firefox.
 
-* Step 1: Run
+Now open a local tiddlywiki file anywhere under your home folder, make some changes and save. Wait for a few seconds to refresh the tab and ensure that changes are saved.
 
-```
-sh -c "$(wget https://raw.githubusercontent.com/ibnishak/Timimi/master/InstallScript/linux.sh -O -)"
-```
+#### Chrome/Chromium
 
-* Step 2 : In your home folder you will find **timimi.xpi**. Drag and drop it to Firefox addon manager page (about:addons).
+Chrome/Chromium does not allow installation of third party extensions from outside the webstore. Until chrome finishes its review and accept timimi to webstore, users will have to install it using the following steps
 
+* Download the platform specific file from [release pages](https://github.com/ibnishak/Timimi/releases/tag/v1.0.0) and unzip it.
+* Run the install script.
+* Open **chrome://extensions/** page in chrome/chromium and turn on the "Developer mode"
+* From the tool bar that appears, click "Load unpacked" and select the folder **chrome-chromium/chrome-addon**.
 
+Now open a local tiddlywiki file anywhere under your home folder, make some changes and save. Wait for a few seconds to refresh the tab and ensure that changes are saved.
 
-If you do not have git and wget installed in your system, or if the install script is throwing errors, follow the steps given below.
-
-* Download the repo from **https://github.com/ibnishak/Timimi**
-* Unzip the downloaded file and open the folder.
-* Open **native-messaging-hosts/timimi.json** and change the name `richie` in the path key to your username. 
-  * Find your username by typing `echo $USER` in your terminal
-* Copy **native-messaging-hosts** folder to ~/.mozilla. 
-  * If you already have a **native-messaging-hosts** folder in ~/.mozilla, you can safely merge them.
-* In **Timimi/addons/web-ext-artifacts** you will find **timimi.xpi**. Drag and drop it to Firefox addon manager page (about:addons).
-
-
-#### Mac - untested
-
-* Download the repo from **https://github.com/ibnishak/Timimi**
-* Unzip the downloaded file and open the folder.
-* Open **native-messaging-hosts/timimi.json** and change the path to **~/Library/Application Support/Mozilla/NativeMessagingHosts/timimi.py**
-* From **native-messaging-hosts** folder, copy timimi.json and timimi.py to **~/Library/Application Support/Mozilla/NativeMessagingHosts/**
-* In **Timimi/addons/web-ext-artifacts** you will find **timimi.xpi**. Drag and drop it to Firefox addon manager page (about:addons).
-
-
-
-#### Windows:
-* Download and unzip the latest **win-firefox.zip** from [releases page](https://github.com/ibnishak/Timimi/releases)
-* Run "install.bat"
-* Drag and drop "timimi.xpi" to the firefox browser and install the addon.
-
-Now open a local tiddlywiki and make a series of changes and save. Wait for 5 secs and reload the tab to ensure that changes are being saved.
 
 
 ### Status
 
-1. Presently it is a barebones addon, as in it just does one thing - saving. Other features of old tiddlyfox plugin, like disabling, showing save status etc can be easily added. I leave it to those who are interested and familiar with Tfox code.
+1. Presently it is a barebones addon, as in it just does one thing - saving. Other features of old tiddlyfox plugin, like disabling, showing save status, time-stamped backups etc are conceivable. If there is a feature you would like to be prioritised, open an issue.
 
-2. The webextension host is currently written in python under the assumption that linux systems usually have it installed by default. It is possible to write the same in nodejs or other language for different platforms to minimize number of installations.
+2. The webextension requires python in linux and mac, but python is not a requirement in windows.
+
 
 
 ### Pros
 
-1. Webextension host can be expanded for different purposes depending on personal preferences. For eg:
+* Webextension host can be expanded for different purposes depending on personal preferences. For eg:
   * Saving time stamped backups instead of overwrting.
   * Monitor changes to a tiddler and enter it to a local relational database like sqlite.
 
-2. It can be easily ported over to chrome
-3. No need to run a server, does not require continued user interactions
+* Available for chrome, chromium and firefox across major desktop platforms
+* No need to run a server, does not require continued user interactions
 
 ### Cons
+
 1. Cannot be used in android
 
 ### Credits
