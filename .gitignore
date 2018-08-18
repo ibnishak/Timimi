@@ -1,3 +1,4 @@
-./packages/
-./distribution/
+./zb-packages/
+./za-distribution/
+./za-test/
 ./thinking.org
