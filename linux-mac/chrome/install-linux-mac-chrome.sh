@@ -1,7 +1,7 @@
 #!/bin/sh
 # Copyright 2013 The Chromium Authors. All rights reserved.
-# Use of this source code is governed by a BSD-style license that can be
-# found in the LICENSE file.
+# Use of this source code is governed by a BSD-style license
+
 set -e
 DIR="$( cd "$( dirname "$0" )" && pwd )"
 if [ "$(uname -s)" = "Darwin" ]; then
@@ -21,8 +21,8 @@ HOST_NAME=timimi
 # Create directory to store native messaging host.
 mkdir -p "$TARGET_DIR"
 # Copy native messaging host manifest. CHANGE
-cp "$DIR/native-messaging-hosts/$HOST_NAME.json" "$TARGET_DIR"
-cp "$DIR/native-messaging-hosts/$HOST_NAME.py" "$TARGET_DIR"
+cp "$DIR/$HOST_NAME.json" "$TARGET_DIR"
+cp "$DIR/$HOST_NAME.py" "$TARGET_DIR"
 # Update host path in the manifest.
 HOST_PATH="$TARGET_DIR/$HOST_NAME.py"
 ESCAPED_HOST_PATH=${HOST_PATH////\\/}

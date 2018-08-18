@@ -6,15 +6,15 @@ set -e
 DIR="$( cd "$( dirname "$0" )" && pwd )"
 if [ "$(uname -s)" = "Darwin" ]; then
   if [ "$(whoami)" = "root" ]; then
-    TARGET_DIR="/Library/Application Support/Chromium/NativeMessagingHosts"
+    TARGET_DIR="/Library/Application Support/Mozilla/NativeMessagingHosts"
   else
-    TARGET_DIR="$HOME/Library/Application Support/Chromium/NativeMessagingHosts"
+    TARGET_DIR="$HOME/Library/Application Support/Mozilla/NativeMessagingHosts"
   fi
 else
   if [ "$(whoami)" = "root" ]; then
-    TARGET_DIR="/etc/chromium/native-messaging-hosts"
+    TARGET_DIR="/usr/lib/mozilla/native-messaging-hosts"
   else
-    TARGET_DIR="$HOME/.config/chromium/NativeMessagingHosts"
+    TARGET_DIR="$HOME/.mozilla/native-messaging-hosts"
   fi
 fi
 HOST_NAME=timimi
