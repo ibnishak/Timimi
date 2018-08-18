@@ -47,14 +47,14 @@ Tiddlyfox addon for firefox browser stopped working for post 57 versions of fire
 
 
 
-### Supported browsers:
+### Supported browsers
 
 
 * Firefox >57
 * Chrome >54
-* Chromium
+* Chromium >50
 
-### Supported OS:
+### Supported OS
 
 * OSX
 * Windows >7
