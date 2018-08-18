@@ -26,6 +26,18 @@
 <br/><br/><br/>
 
 
+* [Intro](#intro)
+* [Supported browsers:](#supported-browsers)
+* [Supported OS:](#supported-os)
+* [Installation:](#installation)
+  * [Firefox](#firefox)
+  * [Chrome/Chromium](#chromechromium)
+* [Status](#status)
+* [Pros](#pros)
+* [Cons](#cons)
+
+
+
 
 ### Intro
 
