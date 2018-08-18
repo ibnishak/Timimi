@@ -1,0 +1,9 @@
+{
+  "name": "timimi",
+  "description": "Native messaging host to save TW5",
+  "path": "HOST_PATH",
+  "type": "stdio",
+   "allowed_origins": [
+    "chrome-extension://nfnlgilmocdfjbkapepflhffocndognj/"
+  ]
+}
