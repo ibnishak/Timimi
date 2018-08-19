@@ -27,8 +27,8 @@
 
 
 * [Intro](#intro)
-* [Supported browsers:](#supported-browsers)
-* [Supported OS:](#supported-os)
+* [Supported browsers](#supported-browsers)
+* [Supported OS](#supported-os)
 * [Installation:](#installation)
   * [Firefox](#firefox)
   * [Chrome/Chromium](#chromechromium)
@@ -77,7 +77,9 @@ Now open a local tiddlywiki file anywhere under your home folder, make some chan
 Chrome/Chromium does not allow installation of third party extensions from outside the webstore. Until chrome finishes its review and accept timimi to webstore, users will have to install it using the following steps
 
 * Download the platform specific file from [release pages](https://github.com/ibnishak/Timimi/releases/tag/v1.0.0) and unzip it.
+ * In windows, Keep it under your home folder but remember to unzip it to a convienient location as it will be your install folder.
 * Run the install script.
+ * In windows, if you are moving the unzipped file folder after installation, rememeber to run the install.bat once again from the new location.
 * Open **chrome://extensions/** page in chrome/chromium and turn on the "Developer mode"
 * From the tool bar that appears, click "Load unpacked" and select the folder **chrome-chromium/chrome-addon**.
 
@@ -91,6 +93,10 @@ Now open a local tiddlywiki file anywhere under your home folder, make some chan
 
 2. The webextension requires python in linux and mac, but python is not a requirement in windows.
 
+
+### Roadmap
+
+1. Enabling time-stamped backups
 
 
 ### Pros
