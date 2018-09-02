@@ -26,7 +26,7 @@ cp "$DIR/$HOST_NAME.py" "$TARGET_DIR"
 # Update host path in the manifest.
 HOST_PATH="$TARGET_DIR/$HOST_NAME.py"
 ESCAPED_HOST_PATH=${HOST_PATH////\\/}
-sed -i -e "s/HOST_PATH/$ESCAPED_HOST_PATH/" "$TARGET_DIR/$HOST_NAME.json"
+sed -i.bak -e "s/HOST_PATH/$ESCAPED_HOST_PATH/" "$TARGET_DIR/$HOST_NAME.json"
 # Set permissions for the manifest so that all users can read it.
 chmod o+r "$TARGET_DIR/$HOST_NAME.json"
 echo "Native messaging host $HOST_NAME has been installed."

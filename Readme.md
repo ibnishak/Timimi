@@ -57,7 +57,7 @@ Tiddlyfox addon for firefox browser stopped working for post 57 versions of fire
 ### Supported OS
 
 * OSX
-* Windows >7
+* Windows 7 and later.
 * Debian based systems - Debian, Ubuntu, Elementary, Mint etc
 * Arch based systems - Arch Linux, Antergos, Manjaro etc
 
@@ -93,11 +93,15 @@ Now open a local tiddlywiki file anywhere under your home folder, make some chan
 
 2. The webextension requires python in linux and mac, but python is not a requirement in windows.
 
+<<<<<<< HEAD
 
 ### Roadmap
 
 1. Enabling time-stamped backups
 
+=======
+3. For backups, please see [Snapshot plugin](https://ibnishak.github.io/Tesseract/pluginsandmacros/snapshot.html)
+>>>>>>> 0fe378f06ab4f05aaf85fc204e51d15272d31564
 
 ### Pros
 
