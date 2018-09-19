@@ -30,13 +30,11 @@
 * [Supported browsers](#supported-browsers)
 * [Supported OS](#supported-os)
 * [Installation:](#installation)
-  * [Firefox](#firefox)
-  * [Chrome/Chromium](#chromechromium)
 * [Status](#status)
+* [To do](#to-do)
 * [Pros](#pros)
 * [Cons](#cons)
-
-
+* [Credits](#credits)
 
 
 ### Intro
@@ -56,10 +54,11 @@ Tiddlyfox addon for firefox browser stopped working for post 57 versions of fire
 
 ### Supported OS
 
-* OSX
-* Windows 7 and later.
 * Debian based systems - Debian, Ubuntu, Elementary, Mint etc
 * Arch based systems - Arch Linux, Antergos, Manjaro etc
+* OSX
+* Windows 7 and later.
+
 
 
 ### Installation:
@@ -89,19 +88,19 @@ Now open a local tiddlywiki file anywhere under your home folder, make some chan
 
 ### Status
 
-1. Presently it is a barebones addon, as in it just does one thing - saving. Other features of old tiddlyfox plugin, like disabling, showing save status, time-stamped backups etc are conceivable. If there is a feature you would like to be prioritised, open an issue.
+1. Presently it is a barebones addon, as in it just does one thing - saving. Other features of old tiddlyfox plugin, like disabling, showing save status. If there is a feature you would like to be prioritised, open an issue.
 
 2. The webextension requires python in linux and mac, but python is not a requirement in windows.
 
-<<<<<<< HEAD
-
-### Roadmap
-
-1. Enabling time-stamped backups
-
-=======
 3. For backups, please see [Snapshot plugin](https://ibnishak.github.io/Tesseract/pluginsandmacros/snapshot.html)
->>>>>>> 0fe378f06ab4f05aaf85fc204e51d15272d31564
+
+
+### To do
+
+1. Relative paths for snapshot plugin
+2. Rewrite webextension host in golang
+3. Launch simple scripts
+
 
 ### Pros
 
