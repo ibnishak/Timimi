@@ -31,8 +31,9 @@ func Receive(reader io.Reader) ([]byte, error) {
 	return received, nil
 }
 
-type response struct {
+type incomingdata struct {
 	Content string `json:"content"`
+	Path    string `json:"path"`
 }
 
 func main() {
@@ -41,13 +42,13 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	var res response
+	var res incomingdata
 	err = json.Unmarshal([]byte(msg), &res)
 	if err != nil {
 		panic(err)
 	}
 	//	fmt.Println(res.Content)
-	err = ioutil.WriteFile("test.txt", []byte(res.Content), 0666)
+	err = ioutil.WriteFile(res.Path, []byte(res.Content), 0666)
 	if err != nil {
 		log.Fatal(err)
 	}
