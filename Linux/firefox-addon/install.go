@@ -1,4 +1,4 @@
-package main
+package instTimimi
 
 import (
 	"fmt"
@@ -10,7 +10,7 @@ import (
 	"github.com/fatih/color"
 )
 
-type Host struct {
+type host struct {
 	Dir      string
 	Manifest string
 	Exec     string
@@ -30,15 +30,15 @@ func main() {
 	color.Cyan("Hello There\nStarting Timimi Installation")
 	cyan := color.New(color.FgCyan).SprintFunc() // Used when you want to mix regular output with colored output
 
-	var host Host
-	host.Dir = path.Join(os.Getenv("HOME"), ".mozilla/native-messaging-hosts")
-	host.Manifest = path.Join(host.Dir, "timimi.json")
-	host.Exec = path.Join(host.Dir, "timimi")
+	var h host
+	h.Dir = path.Join(os.Getenv("HOME"), ".mozilla/native-messaging-hosts")
+	h.Manifest = path.Join(h.Dir, "timimi.json")
+	h.Exec = path.Join(h.Dir, "timimi")
 
-	createDirIfNotExist(host.Dir) // create native host directory
-	fmt.Printf("Created host directory: %s\n", cyan(host.Dir))
+	createDirIfNotExist(h.Dir) // create native host directory
+	fmt.Printf("Created host directory: %s\n", cyan(h.Dir))
 
-	f, err := os.Create(host.Manifest) // Create host manifest file
+	f, err := os.Create(h.Manifest) // Create host manifest file
 	if err != nil {
 		log.Fatal("Create file: ", err)
 		return
@@ -52,19 +52,19 @@ func main() {
 		return
 	}
 
-	err = t.Execute(f, host) // Write template "t" to file "f" with information taken from "host"
+	err = t.Execute(f, h) // Write template "t" to file "f" with information taken from "host"
 	if err != nil {
 		log.Fatal("Execute: ", err)
 		return
 	}
-	fmt.Printf("Created host manifest: %s\n", cyan(host.Manifest))
+	fmt.Printf("Created host manifest: %s\n", cyan(h.Manifest))
 
-	err = os.Rename("timimi", host.Exec) // Rename is golang's way of moving file.
+	err = os.Rename("timimi", h.Exec) // Rename is golang's way of moving file.
 	if err != nil {
 		log.Fatal("Move: ", err)
 		return
 	}
-	fmt.Printf("Created host executable: %s\n", cyan(host.Exec))
+	fmt.Printf("Created host executable: %s\n", cyan(h.Exec))
 
 	color.Cyan("\n\nInstallation finished without errors.\nHave a great day!!")
 

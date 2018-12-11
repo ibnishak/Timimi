@@ -11,7 +11,22 @@ import (
 
 var byteOrder binary.ByteOrder = binary.LittleEndian
 
-func Receive(reader io.Reader) ([]byte, error) {
+func post(msg []byte, writer io.Writer) error {
+	// Post message length in native byte order
+	header := make([]byte, 4)
+	byteOrder.PutUint32(header, (uint32)(len(msg)))
+	if n, err := writer.Write(header); err != nil || n != len(header) {
+		return err
+	}
+
+	// Post message body
+	if n, err := writer.Write(msg); err != nil || n != len(msg) {
+		return err
+	}
+	return nil
+}
+
+func receive(reader io.Reader) ([]byte, error) {
 	// Read message length in native byte order
 	var length uint32
 	if err := binary.Read(reader, byteOrder, &length); err != nil {
@@ -31,24 +46,24 @@ func Receive(reader io.Reader) ([]byte, error) {
 	return received, nil
 }
 
-type incomingdata struct {
+type indata struct {
 	Content string `json:"content"`
 	Path    string `json:"path"`
 }
 
 func main() {
 
-	msg, err := Receive(os.Stdin)
+	msg, err := receive(os.Stdin)
 	if err != nil {
 		panic(err)
 	}
-	var res incomingdata
-	err = json.Unmarshal([]byte(msg), &res)
+	var data indata
+	err = json.Unmarshal([]byte(msg), &data)
 	if err != nil {
 		panic(err)
 	}
-	//	fmt.Println(res.Content)
-	err = ioutil.WriteFile(res.Path, []byte(res.Content), 0666)
+	//	fmt.Println(data.Content)
+	err = ioutil.WriteFile(data.Path, []byte(data.Content), 0666)
 	if err != nil {
 		log.Fatal(err)
 	}
