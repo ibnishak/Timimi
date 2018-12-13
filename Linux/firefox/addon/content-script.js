@@ -53,7 +53,6 @@ if (checkTWResults.isTiddlyWiki5 && checkTWResults.isLocalFile) {
 
         function handleResponse(message) {
             messageElement.parentNode.removeChild(messageElement);
-            console.log("Saved successfully to " + path);
             console.log("Message ID is " + messageId);
             var event = document.createEvent("Events");
             event.initEvent("tiddlyfox-have-saved-file", true, false);
@@ -65,7 +64,4 @@ if (checkTWResults.isTiddlyWiki5 && checkTWResults.isLocalFile) {
             console.log(`Error: ${error}`);
         }
     }
-
-} else {
-    twport.disconnect();
 }

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="options.css" />
+  </head>
+
+  <body>
+      <h3>Backup strategy</h3>
+
+      <form>
+   
+        
+        <label class="label" for="bstrategy">Backup strategy</label>
+        <div class="select-wrap">
+          <select class="select" id="bstrategy">
+            <option value="toh">Tower of Hanoi</option>
+            <option value="psave">Every nth save</option>
+          </select>
+        </div>
+
+        <label class="label" for="trecent">Number of recent saves</label>
+        <input class="input" type="text" id="trecent">  
+
+      </form>
+
+    <script src="options.js"></script>
+  </body>
+</html>
