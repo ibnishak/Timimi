@@ -47,8 +47,15 @@ func receive(reader io.Reader) ([]byte, error) {
 }
 
 type indata struct {
-	Content string `json:"content"`
-	Path    string `json:"path"`
+	Content   string `json:"content"`
+	Path      string `json:"path"`
+	Backup    string `json:"backup"`
+	Bpath     string `json:"bpath"`
+	Bstrategy string `json:"bstrategy"`
+	MessageId string `json:"messageId"`
+	Tohrecent int    `json:"tohrecent"`
+	Tohlevel  int    `json:"tohlevel"`
+	Psint     int    `json:"psint"`
 }
 
 func main() {
@@ -64,6 +71,11 @@ func main() {
 	}
 	//	fmt.Println(data.Content)
 	err = ioutil.WriteFile(data.Path, []byte(data.Content), 0666)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	err = ioutil.WriteFile("/home/richie/test.txt", []byte(data.Bpath), 0666)
 	if err != nil {
 		log.Fatal(err)
 	}

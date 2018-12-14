@@ -1,4 +1,4 @@
-package instTimimi
+package main
 
 import (
 	"fmt"

@@ -4,14 +4,25 @@
   <head>
     <meta charset="utf-8" />
     <link rel="stylesheet" type="text/css" href="options.css" />
+
   </head>
 
   <body>
-      <h3>Backup strategy</h3>
+ 
+      <h3>Settings</h3>
 
       <form>
-   
-        
+        <!-- <fieldset>
+        <legend>Backup</legend> -->
+        <div class="lh26">
+        <span>Create backups</span>
+        <label class="switch">
+          <input type="checkbox" id="backup" value="true">
+          <span class="slider"></span>
+        </label>
+        </div>
+        <label class="label" for="bpath">Backup location</label>
+        <input class="input" type="text" id="bpath"> 
         <label class="label" for="bstrategy">Backup strategy</label>
         <div class="select-wrap">
           <select class="select" id="bstrategy">
@@ -20,9 +31,17 @@
           </select>
         </div>
 
-        <label class="label" for="trecent">Number of recent saves</label>
-        <input class="input" type="text" id="trecent">  
-
+        <label class="label" for="tohrecent">Number of recent saves</label>
+        <input class="input" type="text" id="tohrecent"> 
+        <label class="label" for="tohlevel">Number of levels</label>
+        <input class="input" type="range" min="3" max="15" value="8" id="tohlevel">
+        <p style="text-align: right;">Value: <span id="rangeout"></span></p>  
+        <label class="label" for="psint">Number of saves between 2 backups</label>
+        <input class="input" type="text" id="psint">
+        <div class="centered">
+        <button type="submit"><span style="outline: none !important;">Save</span></button>
+        </div>
+      <!-- </fieldset> -->
       </form>
 
     <script src="options.js"></script>
