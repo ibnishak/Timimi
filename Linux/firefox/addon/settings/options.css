@@ -29,7 +29,7 @@ textarea {
   padding: 10px;
   border-width: 1px;
   border-style: solid;
-  border-color: #D1D1D1;
+  border-color: #d1d1d1;
   border-radius: 4px;
   background-color: white;
   -webkit-transition: border-color ease-in-out 0.15s,
@@ -44,7 +44,7 @@ textarea {
 .radio-label:focus:after,
 .select:focus,
 .textarea:focus {
-  border-color: #33C3F0;
+  border-color: #33c3f0;
   border-width: 1px;
 }
 .input::-webkit-input-placeholder,
@@ -135,14 +135,13 @@ form {
   margin-bottom: 1em;
 }
 
-
 /* The switch - the box around the slider */
 .switch {
-	position: relative;
-	display: inline-block;
-	width: 60px;
-	height: 34px;
-	float: right;
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  float: right;
 }
 
 /* Hide default HTML checkbox */
@@ -161,8 +160,8 @@ form {
   right: 0;
   bottom: 0;
   background-color: #ccc;
-  -webkit-transition: .2s;
-  transition: .2s;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
 }
 
 .slider:before {
@@ -173,16 +172,16 @@ form {
   left: 4px;
   bottom: 4px;
   background-color: white;
-  -webkit-transition: .2s;
-  transition: .2s;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
 }
 
 input:checked + .slider {
-  background-color: #2196F3;
+  background-color: #2196f3;
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
+  box-shadow: 0 0 1px #2196f3;
 }
 
 input:checked + .slider:before {
@@ -196,25 +195,33 @@ input:checked + .slider:before {
   padding-bottom: 3%;
 }
 button {
-	color: #FFF;
-	background-color: #3598dc;
-	outline: 0 !important;
-	border: 1px solid transparent;
-	border-color: #3598dc;
-	display: inline-block;
-	margin-bottom: 0;
-	font-weight: 600;
-	text-align: center;
-	vertical-align: middle;
-	padding: 10px 50px;
-	font-size: 14px;
-	width: 100%;
-	border-radius: 4px;
+  color: #fff;
+  background-color: #3598dc;
+  outline: 0 !important;
+  border: 1px solid transparent;
+  border-color: #3598dc;
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: 600;
+  text-align: center;
+  vertical-align: middle;
+  padding: 10px 50px;
+  font-size: 14px;
+  width: 100%;
+  border-radius: 4px;
 }
 button:active {
   background-color: #217ebd;
-border-color: #1f78b5;
+  border-color: #1f78b5;
 }
 .centered {
   text-align: center;
+}
+
+fieldset {
+  padding: 4%;
+  border: 1px solid rgb(255, 160, 122);
+  -webkit-background-clip: padding-box; /* for Safari */
+  background-clip: padding-box; /* for IE9+, Firefox 4+, Opera, Chrome */
+  margin-bottom: 5%;
 }

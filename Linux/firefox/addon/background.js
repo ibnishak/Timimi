@@ -1,7 +1,5 @@
-var port = browser.runtime.connectNative("timimi");
-var bpath;
-var getting = browser.storage.sync.get("color");
-getting.then(onGot, onError);
+// var port = browser.runtime.connectNative("timimi");
+
 // port.onMessage.addListener((response) => {
 //     console.log("Received: " + response.content);
 // });
@@ -17,7 +15,6 @@ function onGot(item) {
 
 function handleMessage(request, sender, sendResponse) {
   console.log("Sending native message");
-  request.bpath = bpath;
   browser.runtime.sendNativeMessage("timimi", request);
   // port.postMessage(request);
 }

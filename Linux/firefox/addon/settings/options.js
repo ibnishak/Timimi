@@ -29,6 +29,7 @@ function restoreOptions() {
 }
 
 document.addEventListener("DOMContentLoaded", restoreOptions);
+// document.addEventListener("DOMContentLoaded", selectCh);
 document.querySelector("form").addEventListener("submit", saveOptions);
 
 var slider = document.getElementById("tohlevel");
@@ -38,3 +39,10 @@ output.innerHTML = slider.value;
 slider.oninput = function() {
   output.innerHTML = this.value;
 };
+
+// function selectCh() {
+//   var sel = document.getElementById("bstrategy");
+//   document.getElementById("toh").style.display = "none";
+//   document.getElementById("psave").style.display = "none";
+//   document.getElementById(sel.value).style.display = "block";
+// }
