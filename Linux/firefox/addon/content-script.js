@@ -1,25 +1,5 @@
-//var twport = browser.runtime.connect({ name: "port-from-cs" });
 var idGenerator = 1;
-var backup, bpath, bstrategy, tohrecent, tohlevel, psint;
-var getting = browser.storage.sync.get();
-getting.then(onGot, syncError);
-
-function syncError(error) {
-  console.log(`Error in getting values from browser storage: ${error}`);
-}
-
-function onGot(item) {
-  backup = item.backup;
-  bpath = item.bpath;
-  bstrategy = item.bstrategy;
-  tohrecent = item.tohrecent;
-  tohlevel = item.tohlevel;
-  psint = item.psint;
-  if (backup == "true") {
-    console.log("Timimi: Backups enabled");
-    console.log("Timimi: Backup method -" + bstrategy);
-  }
-}
+var data = {};
 
 // Checking if the active tab is a  local tiddlywiki file
 function checkTW() {
@@ -47,6 +27,21 @@ function checkTW() {
   }
   return results;
 }
+// Loading settings from browser storage
+var getting = browser.storage.sync.get();
+getting.then(onGot, syncError);
+
+function syncError(error) {
+  console.log(`Error in getting values from browser storage: ${error}`);
+}
+
+function onGot(item) {
+  data = item;
+  if (data.backup == "yes") {
+    console.log("Timimi: Backups enabled");
+    console.log("Timimi: Backup method -" + data.bstrategy);
+  }
+}
 
 var checkTWResults = checkTW();
 
@@ -72,15 +67,15 @@ if (checkTWResults.isTiddlyWiki5 && checkTWResults.isLocalFile) {
     // Send the details to background script. Not using port because we need a promise and port.postMessage is not a promise
     var sending = browser.runtime.sendMessage({
       path: path,
-      messageId: messageId,
+      messageId: idGenerator,
       content: content,
       backupPath: backupPath,
-      backup: backup,
-      bpath: bpath,
-      bstrategy: bstrategy,
-      tohrecent: tohrecent,
-      tohlevel: tohlevel,
-      psint: psint
+      backup: data.backup,
+      bpath: data.bpath,
+      bstrategy: data.bstrategy,
+      tohrecent: data.tohrecent,
+      tohlevel: data.tohlevel,
+      psint: data.psint
     });
     sending.then(handleResponse, handleError);
 

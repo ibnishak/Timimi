@@ -105,6 +105,7 @@ textarea {
 body {
   padding: 0 20px 20px 20px;
   font-family: sans-serif;
+  color : #111111 !important
 }
 
 h1 {
@@ -138,7 +139,7 @@ form {
 /* The switch - the box around the slider */
 .switch {
   position: relative;
-  display: inline-block;
+  /* display: inline-block; */
   width: 60px;
   height: 34px;
   float: right;

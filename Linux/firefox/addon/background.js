@@ -3,19 +3,18 @@
 // port.onMessage.addListener((response) => {
 //     console.log("Received: " + response.content);
 // });
+function onResponse(response) {
+  console.log("TImimi: Native Host: " + response.content);
+}
+
 function onError(error) {
   console.log(`Error: ${error}`);
 }
 
-function onGot(item) {
-  if (item.bpath) {
-    bpath = item.bpath;
-  }
-}
-
 function handleMessage(request, sender, sendResponse) {
   console.log("Sending native message");
-  browser.runtime.sendNativeMessage("timimi", request);
+  var sending = browser.runtime.sendNativeMessage("timimi", request);
+  sending.then(onResponse, onError);
   // port.postMessage(request);
 }
 

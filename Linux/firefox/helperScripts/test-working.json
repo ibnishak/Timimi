@@ -1,0 +1,1 @@
+{ "backup":"yes",  "bstrategy":"psave","psint":"5", "tohrecent":"8", "tohlevel":"6", "path":"data/mecasa.txt", "content": "haaaai", "messageId":25}

@@ -12,7 +12,7 @@ function saveOptions(e) {
 
 function restoreOptions() {
   function setCurrentChoice(result) {
-    document.querySelector("#backup").value = result.backup || "false";
+    document.querySelector("#backup").value = result.backup || "yes";
     document.querySelector("#bpath").value = result.bpath || ".";
     document.querySelector("#bstrategy").value = result.bstrategy || "toh";
     document.querySelector("#tohrecent").value = result.tohrecent || "5";
@@ -46,3 +46,37 @@ slider.oninput = function() {
 //   document.getElementById("psave").style.display = "none";
 //   document.getElementById(sel.value).style.display = "block";
 // }
+
+// Ensuring that only integers are entered to tohrecent and psint
+
+function setInputFilter(textbox, inputFilter) {
+  [
+    "input",
+    "keydown",
+    "keyup",
+    "mousedown",
+    "mouseup",
+    "select",
+    "contextmenu",
+    "drop"
+  ].forEach(function(event) {
+    textbox.addEventListener(event, function() {
+      if (inputFilter(this.value)) {
+        this.oldValue = this.value;
+        this.oldSelectionStart = this.selectionStart;
+        this.oldSelectionEnd = this.selectionEnd;
+      } else if (this.hasOwnProperty("oldValue")) {
+        this.value = this.oldValue;
+        this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+      }
+    });
+  });
+}
+
+setInputFilter(document.getElementById("tohrecent"), function(value) {
+  return /^-?\d*$/.test(value);
+});
+
+setInputFilter(document.getElementById("psint"), function(value) {
+  return /^-?\d*$/.test(value);
+});
