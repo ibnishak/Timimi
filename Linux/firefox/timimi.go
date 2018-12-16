@@ -65,8 +65,6 @@ type indata struct {
 	Tohlevel  string `json:"tohlevel"`
 	Psint     string `json:"psint"`
 }
-type outdata struct {
-}
 
 func main() {
 
