@@ -1,5 +1,5 @@
 var idGenerator = 1;
-var data = {};
+var data;
 
 // Checking if the active tab is a  local tiddlywiki file
 function checkTW() {

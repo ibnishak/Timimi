@@ -65,7 +65,6 @@ type indata struct {
 	Tohrecent string `json:"tohrecent"`
 	Tohlevel  string `json:"tohlevel"`
 	Psint     string `json:"psint"`
-	Action    string `json:"action"`
 }
 type outdata struct {
 }
