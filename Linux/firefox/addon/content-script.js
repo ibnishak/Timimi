@@ -56,6 +56,30 @@ if (checkTWResults.isTiddlyWiki5 && checkTWResults.isLocalFile) {
   // Listen to initiate message from background script
   // Attach the event handler to the message box
   messageBox.addEventListener("tiddlyfox-save-file", onSaveTiddlyWiki, false);
+  messageBox.addEventListener("timimi-action-launch", onActionLaunch, false);
+
+  function onActionLaunch(event) {
+    console.log("Received event: " + event.type);
+    var LaunchElement = event.target,
+      escript = LaunchElement.getAttribute("data-timimi-escript"),
+      eparam = LaunchElement.getAttribute("data-timimi-eparam"),
+      estdin = LaunchElement.getAttribute("data-timimi-estdin");
+    console.log(escript);
+    var sending = browser.runtime.sendMessage({
+      escript: escript,
+      eparam: eparam,
+      estdin: estdin
+    });
+    sending.then(launchResponse, launchError);
+    function launchResponse(message) {
+      LaunchElement.parentNode.removeChild(LaunchElement);
+      console.log("Launch script event finished");
+    }
+
+    function launchError() {
+      console.log(`Error: ${error}`);
+    }
+  }
 
   function onSaveTiddlyWiki(event) {
     // Get the details from the message
