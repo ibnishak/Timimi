@@ -4,7 +4,7 @@
 //     console.log("Received: " + response.content);
 // });
 function onResponse(response) {
-  console.log("TImimi: Native Host: " + response.content);
+  console.log("Timimi: Native Host: " + response.content);
 }
 
 function onError(error) {

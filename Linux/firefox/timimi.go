@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
-	"log"
 	"math"
 	"os"
 	"path"
@@ -73,30 +72,28 @@ func main() {
 
 	msg, err := receive(os.Stdin)
 	if err != nil {
-		panic(err)
+		// panic(err)
+		send("StdIn failed with error", err.Error())
 	}
 	var data indata
 	err = json.Unmarshal([]byte(msg), &data)
 	if err != nil {
-		send("UnMarshall Failed")
-		panic(err)
+		send("UnMarshall Failed with error ", err.Error())
+		// panic(err)
 	}
-	send("UnMarshall Sucess")
 	if data.Path != "" {
 		wg.Add(1)
 		go func() {
 			defer wg.Done()
-			send("Entering Save branch")
 			err = ioutil.WriteFile(data.Path, []byte(data.Content), 0666)
 			if err != nil {
-				log.Fatal(err)
-				send("Save Failed")
+				// log.Fatal(err)
+				send("Save failed with error", err.Error())
 			}
-			send("Save Successfull")
+			send("Save Successfull to ", data.Path)
 		}()
 	}
 	if data.Backup == "yes" {
-		send("Entered Backup")
 		wg.Add(1)
 		go backup(data)
 	}
@@ -126,14 +123,12 @@ func backup(data indata) {
 		// var l, r int = data.Tohlevel, data.Tohrecent
 		l, err := strconv.Atoi(data.Tohlevel)
 		if err != nil {
-			send("Error during conversion of tohlevel to int")
-			log.Fatal("Error during conversion of tohlevel to int: ", err)
+			send("Error during conversion of tohlevel to int: ", err.Error())
 			return
 		}
 		r, err := strconv.Atoi(data.Tohrecent)
 		if err != nil {
-			send("Error during conversion of tohrecent to int")
-			log.Fatal("Error during conversion of tohrecent to int: ", err)
+			send("Error during conversion of tohrecent to int: ", err.Error())
 			return
 		}
 		// TOH SNAPSHOT.LOOP
@@ -146,10 +141,10 @@ func backup(data indata) {
 				tfinal = fmt.Sprintf("%s-%d%s", tfile, p, ext)
 				err := ioutil.WriteFile(path.Join(tdir, tfinal), []byte(data.Content), 0666)
 				if err != nil {
-					log.Fatal(err)
+					// log.Fatal(err)
+					send("TOH Snapshot backup failed with error", err.Error())
 				}
-				fmt.Printf("Saved to %s\n", tfinal)
-				send("Backup Success")
+				// fmt.Printf("Saved to %s\n", tfinal)
 				save = true
 				break
 			}
@@ -161,28 +156,26 @@ func backup(data indata) {
 				tfinal = fmt.Sprintf("%s-A%d%s", tfile, mid, ext)
 				err := ioutil.WriteFile(path.Join(tdir, tfinal), []byte(data.Content), 0666)
 				if err != nil {
-					log.Fatal(err)
+					// log.Fatal(err)
+					send("Error: TOH recent backups failed", err.Error())
 				}
 
-				fmt.Printf("Saved to %s\n", tfinal)
-				send("Backup Success")
-
+				// fmt.Printf("Saved to %s\n", tfinal)
 			} else {
 				c := mid % r
 				tfinal = fmt.Sprintf("%s-A%d%s", tfile, c, ext)
 				err := ioutil.WriteFile(path.Join(tdir, tfinal), []byte(data.Content), 0666)
 				if err != nil {
-					log.Fatal(err)
+					send("Error: TOH recent backups failed with error: ", err.Error())
 				}
-				fmt.Printf("Saved to %s\n", tfinal)
-				send("Backup Success")
+				// fmt.Printf("Saved to %s\n", tfinal)
 			}
 		} // TOH RECENT BACKUPS END
 		//TOH LOGIC ENDS
 	} else if data.Bstrategy == "psave" {
 		pint, err := strconv.Atoi(data.Psint)
 		if err != nil {
-			log.Fatal("Error during conversion of Psint to int: ", err)
+			send("Error during conversion of Psint to int: ", err.Error())
 			return
 		}
 		if mid%pint == 0 {
@@ -190,9 +183,10 @@ func backup(data indata) {
 			tfinal = fmt.Sprintf("%s-%s%s", tfile, buildFileName(), ext)
 			err := ioutil.WriteFile(path.Join(tdir, tfinal), []byte(data.Content), 0666)
 			if err != nil {
-				log.Fatal(err)
+				// log.Fatal(err)
+				send("Error: Per save backups failed", err.Error())
 			}
-			fmt.Printf("Saved to %s\n", tfinal)
+			//fmt.Printf("Saved to %s\n", tfinal)
 		}
 	} //PERSAVE BACKUP LOGIC ENDS
 }
@@ -205,7 +199,7 @@ func buildFileName() string {
 	return time.Now().Format("2006-01-02-15-04-05")
 }
 
-func send(res string) {
-	reply := fmt.Sprintf(`{ "content":"%s"}`, res)
+func send(res, info string) {
+	reply := fmt.Sprintf(`{ "content":"%s %s"}`, res, info)
 	post([]byte(reply), os.Stdout)
 }
