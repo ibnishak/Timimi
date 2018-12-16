@@ -1,14 +1,18 @@
 package main
 
 import (
+	"bytes"
 	"encoding/binary"
 	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
+	"log"
 	"math"
 	"os"
+	"os/exec"
 	"path"
+	"path/filepath"
 	"strconv"
 	"strings"
 	"sync"
@@ -64,6 +68,10 @@ type indata struct {
 	Tohrecent string `json:"tohrecent"`
 	Tohlevel  string `json:"tohlevel"`
 	Psint     string `json:"psint"`
+	Exec      string `json:"exec"`
+	Escript   string `json:"escript"`
+	Eparam    string `json:"eparam"`
+	Estdin    string `json:"estdin"`
 }
 
 func main() {
@@ -94,6 +102,21 @@ func main() {
 	if data.Backup == "yes" {
 		wg.Add(1)
 		go backup(data)
+	}
+	if data.Exec == "yes" {
+		efinal := filepath.Join(os.Getenv("HOME"), ".timimi", data.Escript)
+		cmd := exec.Command(efinal, data.Eparam)
+		if data.Estdin != "" {
+			cmd.Stdin = strings.NewReader(data.Estdin)
+		}
+		var out bytes.Buffer
+		cmd.Stdout = &out
+		err := cmd.Run()
+		if err != nil {
+			log.Fatal(err)
+		}
+		send("STDOUT: ", out.String())
+		// fmt.Printf("in all caps: %q\n", out.String())
 	}
 	wg.Wait()
 }
