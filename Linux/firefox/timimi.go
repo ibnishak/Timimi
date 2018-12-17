@@ -97,7 +97,7 @@ func main() {
 				// log.Fatal(err)
 				send("Save failed with error", err.Error())
 			}
-			// send("Save Successfull to ", data.Path)
+			send("Saved Successfully to ", data.Path)
 		}()
 	}
 	if data.Backup == "yes" {
@@ -214,9 +214,14 @@ func backup(data indata) {
 		//PERSAVE BACKUP LOGIC ENDS
 	} else if data.Bstrategy == "timed" {
 		if data.TBackup == "true" {
-			send("Time for a ", "backup")
+			tfinal = fmt.Sprintf("%s-%s%s", tfile, buildFileName(), ext)
+			err := ioutil.WriteFile(path.Join(tdir, tfinal), []byte(data.Content), 0666)
+			if err != nil {
+				// log.Fatal(err)
+				send("Error: Timed backups failed", err.Error())
+			}
 		} else {
-			send("Not making a boackup", "now")
+			return
 		}
 
 	}

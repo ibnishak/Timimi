@@ -88,12 +88,10 @@ if (checkTWResults.isTiddlyWiki5 && checkTWResults.isLocalFile) {
     var now = new Date();
     var diffMs = now - tlast;
     var diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000);
-
     if (diffMins >= data.tint) {
       tbackup = "true";
       tlast = now;
       console.log("Timimi: Creating Timed Backup");
-      console.log("Tbackup:" + tbackup);
     }
 
     // Get the details from the message
