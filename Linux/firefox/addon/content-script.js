@@ -40,7 +40,7 @@ function onGot(item) {
   data = item;
   if (data.backup == "yes") {
     console.log("Timimi: Backups enabled");
-    console.log("Timimi: Backup method -" + data.bstrategy);
+    console.log("Timimi: Backup method: " + data.bstrategy);
   }
 }
 
@@ -85,15 +85,16 @@ if (checkTWResults.isTiddlyWiki5 && checkTWResults.isLocalFile) {
 
   function onSaveTiddlyWiki(event) {
     tbackup = "false";
-    var now = new Date();
-    var diffMs = now - tlast;
-    var diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000);
-    if (diffMins >= data.tint) {
-      tbackup = "true";
-      tlast = now;
-      console.log("Timimi: Creating Timed Backup");
+    if (data.bstrategy == "timed") {
+      var now = new Date();
+      var diffMs = now - tlast;
+      var diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000);
+      if (diffMins >= data.tint) {
+        tbackup = "true";
+        tlast = now;
+        console.log("Timimi: Creating Timed Backup");
+      }
     }
-
     // Get the details from the message
     var messageElement = event.target,
       path = messageElement.getAttribute("data-tiddlyfox-path"),
