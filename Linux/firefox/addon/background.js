@@ -8,11 +8,11 @@ function onResponse(response) {
 }
 
 function onError(error) {
-  console.log(`Error: ${error}`);
+  console.log(`Timimi: Native Host Error: ${error}`);
 }
 
 function handleMessage(request, sender, sendResponse) {
-  console.log("Sending native message");
+  console.log("Timimi: Sending native message");
   var sending = browser.runtime.sendNativeMessage("timimi", request);
   sending.then(onResponse, onError);
   // port.postMessage(request);

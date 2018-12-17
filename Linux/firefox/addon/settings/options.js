@@ -3,14 +3,20 @@ function saveOptions(e) {
   browser.storage.sync.set({
     backup: document.querySelector("#backup").value,
     bpath: document.querySelector("#bpath").value,
+    bpath: document.querySelector("#bpath").value,
     bstrategy: document.querySelector("#bstrategy").value,
     tohrecent: document.querySelector("#tohrecent").value,
     tohlevel: document.querySelector("#tohlevel").value,
-    psint: document.querySelector("#psint").value
+    psint: document.querySelector("#psint").value,
+    exec: document.querySelector("#exec").value,
+    tint: document.querySelector("#tint").value
   });
 }
 
 function restoreOptions() {
+  var getting = browser.storage.sync.get();
+  getting.then(setCurrentChoice, onError);
+
   function setCurrentChoice(result) {
     document.querySelector("#backup").value = result.backup || "yes";
     document.querySelector("#bpath").value = result.bpath || ".";
@@ -18,14 +24,13 @@ function restoreOptions() {
     document.querySelector("#tohrecent").value = result.tohrecent || "5";
     document.querySelector("#tohlevel").value = result.tohlevel || "8";
     document.querySelector("#psint").value = result.psint || "10";
+    document.querySelector("#exec").value = result.exec || "yes";
+    document.querySelector("#tint").value = result.tint || "4";
   }
 
   function onError(error) {
     console.log(`Error: ${error}`);
   }
-
-  var getting = browser.storage.sync.get();
-  getting.then(setCurrentChoice, onError);
 }
 
 document.addEventListener("DOMContentLoaded", restoreOptions);

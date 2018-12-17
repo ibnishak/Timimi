@@ -87,6 +87,7 @@ func main() {
 		send("UnMarshall Failed with error ", err.Error())
 		// panic(err)
 	}
+
 	if data.Path != "" {
 		wg.Add(1)
 		go func() {
@@ -104,6 +105,7 @@ func main() {
 		go backup(data)
 	}
 	if data.Exec == "yes" {
+		// send("Point", "C")
 		efinal := filepath.Join(os.Getenv("HOME"), ".timimi", data.Escript)
 		cmd := exec.Command(efinal, data.Eparam)
 		if data.Estdin != "" {

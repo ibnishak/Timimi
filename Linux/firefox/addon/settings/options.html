@@ -13,12 +13,12 @@
     <form>
       <!--
         <fieldset>
-        <legend>Backup</legend>
+        	<legend>Backup</legend>
       -->
       <div class="lh26">
         <span>Create backups</span>
-        <label class="switch">
-          <input type="checkbox" id="backup" value="yes" checked/>
+        <label class="switch" for="backup">
+          <input type="checkbox" id="backup" value="yes" checked />
           <span class="slider"></span>
         </label>
       </div>
@@ -29,6 +29,7 @@
         <select class="select" id="bstrategy">
           <option value="toh">Tower of Hanoi</option>
           <option value="psave">Every nth save</option>
+          <option value="timed">Every nth min</option>
         </select>
       </div>
       <div id="toh" class="bopt">
@@ -57,12 +58,28 @@
           <input class="input" type="text" id="psint" />
         </fieldset>
       </div>
+      <div id="timed" class="bopt">
+        <fieldset style="border: 1px solid rgba(81, 211, 92, 0.7);">
+          <legend>Every nth min</legend>
+          <label class="label" for="tint"
+            >Number of minutes after last save</label
+          >
+          <input class="input" type="text" id="tint" />
+        </fieldset>
+      </div>
+      <div class="lh26">
+        <span>Allow scripts</span>
+        <label class="switch">
+          <input type="checkbox" id="exec" value="yes" checked/>
+          <span class="slider"></span>
+        </label>
+      </div>
       <div class="centered">
         <button type="submit">
           <span style="outline: none !important;">Save</span>
         </button>
       </div>
-      <!-- </fieldset> -->
+      <!-- Form End -->
     </form>
 
     <script src="options.js"></script>
