@@ -4,7 +4,13 @@
 //     console.log("Received: " + response.content);
 // });
 function onResponse(response) {
-  console.log("Timimi: Native Host: " + response.content);
+  handleArray(response.Resp);
+  if (response.Errors != null) {
+    handleArray(response.Errors);
+  }
+  if (response.Stdout != "") {
+    console.log(response.Stdout);
+  }
 }
 
 function onError(error) {
@@ -16,6 +22,14 @@ function handleMessage(request, sender, sendResponse) {
   var sending = browser.runtime.sendNativeMessage("timimi", request);
   sending.then(onResponse, onError);
   // port.postMessage(request);
+}
+
+function handleArray(IncomingArray) {
+  dataArray = IncomingArray.map(function(e) {
+    return JSON.stringify(e);
+  });
+  dataString = dataArray.join("\n");
+  console.log(dataString);
 }
 
 browser.runtime.onMessage.addListener(handleMessage);

@@ -15,11 +15,12 @@
         <fieldset>
         	<legend>Backup</legend>
       -->
-      <div class="lh26">
-        <span>Create backups</span>
-        <label for="backup">
-          <input type="checkbox" id="backup" value="yes" />
-        </label>
+      <label class="label" for="backup">Create backup</label>
+      <div class="select-wrap">
+        <select class="select" id="backup">
+          <option value="no">No</option>
+          <option value="yes">Yes</option>
+        </select>
       </div>
       <label class="label" for="bpath">Backup location</label>
       <input class="input" type="text" id="bpath" />
@@ -66,12 +67,12 @@
           <input class="input" type="text" id="tint" />
         </fieldset>
       </div>
-      <div class="lh26">
-        <span>Allow scripts</span>
-        <label class="switch">
-          <input type="checkbox" id="exec" value="yes"/>
-          <span class="slider"></span>
-        </label>
+      <label class="label" for="exec">Allow script execution</label>
+      <div class="select-wrap">
+        <select class="select" id="exec">
+          <option value="no">No</option>
+          <option value="yes">Yes</option>
+        </select>
       </div>
       <div class="centered">
         <button type="submit">

@@ -21,6 +21,14 @@ import (
 var byteOrder binary.ByteOrder = binary.LittleEndian
 var wg sync.WaitGroup
 
+type outdata struct {
+	Errors []string
+	Resp   []string
+	Stdout string
+}
+
+var od outdata
+
 // done := make(chan bool)
 func post(msg []byte, writer io.Writer) error {
 	// Post message length in native byte order
@@ -79,15 +87,15 @@ func main() {
 	msg, err := receive(os.Stdin)
 	if err != nil {
 		// panic(err)
-		send("StdIn failed with error", err.Error())
+		senderr("StdIn failed with error", err)
 	}
 	var data indata
 	err = json.Unmarshal([]byte(msg), &data)
 	if err != nil {
-		send("UnMarshall Failed with error ", err.Error())
+		senderr("UnMarshall Failed with error ", err)
 		// panic(err)
 	}
-	// send(data.Bstrategy, data.Tnow)
+	sendresp("Unmarshall successful")
 	if data.Path != "" {
 		wg.Add(1)
 		go func() {
@@ -95,9 +103,9 @@ func main() {
 			err = ioutil.WriteFile(data.Path, []byte(data.Content), 0666)
 			if err != nil {
 				// log.Fatal(err)
-				send("Save failed with error", err.Error())
+				senderr("Save failed with error", err)
 			}
-			send("Saved Successfully to ", data.Path)
+			sendresp(fmt.Sprintf("Saved Successfully to %s", data.Path))
 		}()
 	}
 	if data.Backup == "yes" {
@@ -105,8 +113,8 @@ func main() {
 		go backup(data)
 	}
 	if data.Exec == "yes" {
-		// send("Point", "C")
 		efinal := filepath.Join(os.Getenv("HOME"), ".timimi", data.Escript)
+		sendresp(fmt.Sprintf("Begining execution of %s", efinal))
 		cmd := exec.Command(efinal, data.Eparam)
 		if data.Estdin != "" {
 			cmd.Stdin = strings.NewReader(data.Estdin)
@@ -115,12 +123,14 @@ func main() {
 		cmd.Stdout = &out
 		err := cmd.Run()
 		if err != nil {
-			send("Action Script Error: ", err.Error())
+			senderr("Action Script Error: ", err)
 		}
-		send("STDOUT: ", out.String())
-		// fmt.Printf("in all caps: %q\n", out.String())
+		sendresp("Script execution completed")
+		od.Stdout = out.String()
 	}
 	wg.Wait()
+	reply, _ := json.Marshal(od)
+	post(reply, os.Stdout)
 }
 
 func backup(data indata) {
@@ -137,6 +147,7 @@ func backup(data indata) {
 	} else {
 		tdir = path.Dir(data.Path)
 	}
+	sendresp(fmt.Sprintf("Backup path set as %s", tdir))
 	var tfile = filenameWithoutExtension(path.Base(data.Path))
 	var ext = path.Ext(data.Path)
 	save := false
@@ -146,12 +157,12 @@ func backup(data indata) {
 		// var l, r int = data.Tohlevel, data.Tohrecent
 		l, err := strconv.Atoi(data.Tohlevel)
 		if err != nil {
-			send("Error during conversion of tohlevel to int: ", err.Error())
+			senderr("Error during conversion of tohlevel to int: ", err)
 			return
 		}
 		r, err := strconv.Atoi(data.Tohrecent)
 		if err != nil {
-			send("Error during conversion of tohrecent to int: ", err.Error())
+			senderr("Error during conversion of tohrecent to int: ", err)
 			return
 		}
 		// TOH SNAPSHOT.LOOP
@@ -165,9 +176,9 @@ func backup(data indata) {
 				err := ioutil.WriteFile(path.Join(tdir, tfinal), []byte(data.Content), 0666)
 				if err != nil {
 					// log.Fatal(err)
-					send("TOH Snapshot backup failed with error", err.Error())
+					senderr("TOH Snapshot backup failed with error", err)
 				}
-				// fmt.Printf("Saved to %s\n", tfinal)
+				sendresp(fmt.Sprintf("Backed up successfully to %s", tfinal))
 				save = true
 				break
 			}
@@ -180,17 +191,18 @@ func backup(data indata) {
 				err := ioutil.WriteFile(path.Join(tdir, tfinal), []byte(data.Content), 0666)
 				if err != nil {
 					// log.Fatal(err)
-					send("Error: TOH recent backups failed", err.Error())
+					senderr("Error: TOH recent backups failed", err)
 				}
-
+				sendresp(fmt.Sprintf("Backed up successfully to %s", tfinal))
 				// fmt.Printf("Saved to %s\n", tfinal)
 			} else {
 				c := mid % r
 				tfinal = fmt.Sprintf("%s-A%d%s", tfile, c, ext)
 				err := ioutil.WriteFile(path.Join(tdir, tfinal), []byte(data.Content), 0666)
 				if err != nil {
-					send("Error: TOH recent backups failed with error: ", err.Error())
+					senderr("Error: TOH recent backups failed with error: ", err)
 				}
+				sendresp(fmt.Sprintf("Backed up successfully to %s", tfinal))
 				// fmt.Printf("Saved to %s\n", tfinal)
 			}
 		} // TOH RECENT BACKUPS END
@@ -198,7 +210,7 @@ func backup(data indata) {
 	} else if data.Bstrategy == "psave" {
 		pint, err := strconv.Atoi(data.Psint)
 		if err != nil {
-			send("Error during conversion of Psint to int: ", err.Error())
+			senderr("Error during conversion of Psint to int: ", err)
 			return
 		}
 		if mid%pint == 0 {
@@ -207,8 +219,9 @@ func backup(data indata) {
 			err := ioutil.WriteFile(path.Join(tdir, tfinal), []byte(data.Content), 0666)
 			if err != nil {
 				// log.Fatal(err)
-				send("Error: Per save backups failed", err.Error())
+				senderr("Error: Per save backups failed", err)
 			}
+			sendresp(fmt.Sprintf("Backed up successfully to %s", tfinal))
 			//fmt.Printf("Saved to %s\n", tfinal)
 		}
 		//PERSAVE BACKUP LOGIC ENDS
@@ -218,8 +231,9 @@ func backup(data indata) {
 			err := ioutil.WriteFile(path.Join(tdir, tfinal), []byte(data.Content), 0666)
 			if err != nil {
 				// log.Fatal(err)
-				send("Error: Timed backups failed", err.Error())
+				senderr("Error: Timed backups failed", err)
 			}
+			sendresp(fmt.Sprintf("Backed up successfully to %s", tfinal))
 		} else {
 			return
 		}
@@ -235,7 +249,11 @@ func buildFileName() string {
 	return time.Now().Format("2006-01-02-15-04-05")
 }
 
-func send(res, info string) {
-	reply := fmt.Sprintf(`{ "content":"%s %s"}`, res, info)
-	post([]byte(reply), os.Stdout)
+func senderr(desc string, err error) {
+	apperr := fmt.Sprintf("Timimi Host: %s%s", desc, err.Error())
+	od.Errors = append(od.Errors, apperr)
+}
+func sendresp(desc string) {
+	appresp := fmt.Sprintf("Timimi Host: %s", desc)
+	od.Resp = append(od.Resp, appresp)
 }
