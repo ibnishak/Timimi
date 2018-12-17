@@ -7,7 +7,6 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
-	"log"
 	"math"
 	"os"
 	"os/exec"
@@ -72,6 +71,7 @@ type indata struct {
 	Escript   string `json:"escript"`
 	Eparam    string `json:"eparam"`
 	Estdin    string `json:"estdin"`
+	TBackup   string `json:"tbackup"`
 }
 
 func main() {
@@ -87,7 +87,7 @@ func main() {
 		send("UnMarshall Failed with error ", err.Error())
 		// panic(err)
 	}
-
+	// send(data.Bstrategy, data.Tnow)
 	if data.Path != "" {
 		wg.Add(1)
 		go func() {
@@ -97,7 +97,7 @@ func main() {
 				// log.Fatal(err)
 				send("Save failed with error", err.Error())
 			}
-			send("Save Successfull to ", data.Path)
+			// send("Save Successfull to ", data.Path)
 		}()
 	}
 	if data.Backup == "yes" {
@@ -115,7 +115,7 @@ func main() {
 		cmd.Stdout = &out
 		err := cmd.Run()
 		if err != nil {
-			log.Fatal(err)
+			send("Action Script Error: ", err.Error())
 		}
 		send("STDOUT: ", out.String())
 		// fmt.Printf("in all caps: %q\n", out.String())
@@ -211,7 +211,15 @@ func backup(data indata) {
 			}
 			//fmt.Printf("Saved to %s\n", tfinal)
 		}
-	} //PERSAVE BACKUP LOGIC ENDS
+		//PERSAVE BACKUP LOGIC ENDS
+	} else if data.Bstrategy == "timed" {
+		if data.TBackup == "true" {
+			send("Time for a ", "backup")
+		} else {
+			send("Not making a boackup", "now")
+		}
+
+	}
 }
 
 func filenameWithoutExtension(fn string) string {

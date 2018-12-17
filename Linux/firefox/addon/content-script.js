@@ -1,5 +1,6 @@
 var idGenerator = 1;
-var data;
+var data = {};
+var tlast = new Date();
 
 // Checking if the active tab is a  local tiddlywiki file
 function checkTW() {
@@ -83,6 +84,18 @@ if (checkTWResults.isTiddlyWiki5 && checkTWResults.isLocalFile) {
   }
 
   function onSaveTiddlyWiki(event) {
+    tbackup = "false";
+    var now = new Date();
+    var diffMs = now - tlast;
+    var diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000);
+
+    if (diffMins >= data.tint) {
+      tbackup = "true";
+      tlast = now;
+      console.log("Timimi: Creating Timed Backup");
+      console.log("Tbackup:" + tbackup);
+    }
+
     // Get the details from the message
     var messageElement = event.target,
       path = messageElement.getAttribute("data-tiddlyfox-path"),
@@ -100,7 +113,8 @@ if (checkTWResults.isTiddlyWiki5 && checkTWResults.isLocalFile) {
       bstrategy: data.bstrategy,
       tohrecent: data.tohrecent,
       tohlevel: data.tohlevel,
-      psint: data.psint
+      psint: data.psint,
+      tbackup: tbackup
     });
     sending.then(handleResponse, handleError);
 
