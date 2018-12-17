@@ -57,9 +57,10 @@ except AttributeError:
         sys.stdout.write(encodedMessage['content'])
         sys.stdout.flush()
 
+    import io
     while True:
         receivedMessage = getMessage()
-        file=open(receivedMessage["path"],"w", encoding='utf-8')
-        file.write("%s" % (receivedMessage["content"]))
+        file=io.open(receivedMessage["path"],"w", encoding='utf-8')
+        file.write(unicode(receivedMessage["content"]))
         file.close()
         sendMessage(encodeMessage("success"))
