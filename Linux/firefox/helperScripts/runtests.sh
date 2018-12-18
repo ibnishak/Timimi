@@ -13,7 +13,7 @@ cp ./demoScripts/* ~/.timimi
 
 echo "Running tests"
 for i in $( ls ./demoData); do
-            ./json2msg.js < demoData/$i | go run timimi.go | ./msg2json.js > ./demoLog/$i
+            go run demoTest/json2msg.go < demoData/$i | go run timimi.go | go run demoTest/msg2json.go > ./demoLog/$i.txt
         done
         echo "Concatenating logs"
         cat ./demoLog/* >> ./demoLog/all-cat-log.json
