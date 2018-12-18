@@ -1,7 +1,6 @@
 package main
 
 import (
-	"bytes"
 	"encoding/binary"
 	"encoding/json"
 	"fmt"
@@ -119,14 +118,17 @@ func main() {
 		if data.Estdin != "" {
 			cmd.Stdin = strings.NewReader(data.Estdin)
 		}
-		var out bytes.Buffer
-		cmd.Stdout = &out
-		err := cmd.Run()
+
+		stdoutStderr, err := cmd.CombinedOutput()
 		if err != nil {
 			senderr("Action Script Error: ", err)
 		}
+		// err = cmd.Run()
+		// if err != nil {
+		// 	senderr("Action Script Error: ", err)
+		// }
 		sendresp("Script execution completed")
-		od.Stdout = out.String()
+		od.Stdout = BytesToString(stdoutStderr)
 	}
 	wg.Wait()
 	reply, _ := json.Marshal(od)
@@ -256,4 +258,7 @@ func senderr(desc string, err error) {
 func sendresp(desc string) {
 	appresp := fmt.Sprintf("Timimi Host: %s", desc)
 	od.Resp = append(od.Resp, appresp)
+}
+func BytesToString(data []byte) string {
+	return string(data[:])
 }
