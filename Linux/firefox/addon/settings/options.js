@@ -19,7 +19,7 @@ function restoreOptions() {
 
   function setCurrentChoice(result) {
     document.querySelector("#backup").value = result.backup || "yes";
-    document.querySelector("#bpath").value = result.bpath || ".";
+    document.querySelector("#bpath").value = result.bpath || "";
     document.querySelector("#bstrategy").value = result.bstrategy || "toh";
     document.querySelector("#tohrecent").value = result.tohrecent || "5";
     document.querySelector("#tohlevel").value = result.tohlevel || "8";

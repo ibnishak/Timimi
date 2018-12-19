@@ -16,11 +16,13 @@ type host struct {
 	Exec     string
 }
 
+var pldir string = "Library/Application Support/Mozilla/NativeMessagingHosts" //Platform Directory
+
 // Template for timimi host manifest
 const tmpl = `{
   "name": "timimi",
   "description": "Native messaging host to save TW5",
-  "path": "{{.Exec}}",
+  "path": "{.Exec}}",
   "type": "stdio",
   "allowed_extensions": [ "timimi@tesseract.com" ]
 }
@@ -31,7 +33,7 @@ func main() {
 	cyan := color.New(color.FgCyan).SprintFunc() // Used when you want to mix regular output with colored output
 
 	var h host
-	h.Dir = path.Join(os.Getenv("HOME"), ".mozilla/native-messaging-hosts")
+	h.Dir = path.Join(os.Getenv("HOME"), pldir)
 	h.Manifest = path.Join(h.Dir, "timimi.json")
 	h.Exec = path.Join(h.Dir, "timimi")
 

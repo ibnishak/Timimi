@@ -5,7 +5,7 @@ BrandingText " "
 Icon "logo.ico"
 
 
-!define APPNAME "Timimi"
+!define APPNAME "Timimi-Chrome"
 
 PageEx readme
    LicenseData readme.rtf
@@ -26,11 +26,11 @@ InstallDir "$APPDATA\${APPNAME}"
 SetOutPath $INSTDIR
  
 File "timimi.exe"
+File "timimi.json"
 File "logo.ico"
 File "scripts.ico"
-File "timimi.json"
 
-WriteRegStr HKCU "SOFTWARE\Mozilla\NativeMessagingHosts\timimi" "" "$\"$INSTDIR\timimi.json$\""
+WriteRegStr HKCU "Software\Google\Chrome\NativeMessagingHosts\timimi" "" "$\"$INSTDIR\timimi.json$\""
 
 WriteUninstaller $INSTDIR\uninstaller.exe
 

@@ -16,7 +16,7 @@ for i in $( ls ./demoData); do
             go run demoTest/json2msg.go < demoData/$i | go run timimi.go | go run demoTest/msg2json.go > ./demoLog/$i.txt
         done
         echo "Concatenating logs"
-        cat ./demoLog/* >> ./demoLog/all-cat-log.json
+        cat ./demoLog/* >> ./demoLog/all-cat-log.txt
         echo "Cleaning up"
         rm -f ./demoPath/alternateBpath/*
         pushd ./demoPath
