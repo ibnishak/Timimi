@@ -10,6 +10,20 @@ function onResponse(response) {
   }
   if (response.Stdout != "") {
     console.log(response.Stdout);
+    stdout = response.Stdout;
+    browser.tabs
+      .query({
+        currentWindow: true,
+        active: true
+      })
+      .then(sendMessageToTabs)
+      .catch(onError);
+    function sendMessageToTabs(tabs) {
+      for (let tab of tabs) {
+        browser.tabs.sendMessage(tab.id, { stdout: stdout });
+      }
+      console.log("Timimi: Sending stdout to contentscript");
+    }
   }
 }
 

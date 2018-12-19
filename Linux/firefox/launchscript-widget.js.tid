@@ -1,12 +1,12 @@
 created: 20181216022522329
-modified: 20181216023343117
+modified: 20181219022404437
 module-type: widget
 tags: 
-title: $:/core/modules/widgets/action-launchscript.js
+title: $:/plugins/tesseract/action-launchscript/action-launchscript-widget.js
 type: application/javascript
 
 /*\
-title: $:/core/modules/widgets/action-launchscript.js
+title: $:/plugins/tesseract/action-launchscript/action-launchscript-widget.js
 type: application/javascript
 module-type: widget
 
@@ -44,6 +44,7 @@ Compute the internal state of the widget
     this.actionScript = this.getAttribute("$script");
     this.actionParam = this.getAttribute("$param");
     this.actionStdin = this.getAttribute("$stdin");
+    this.actionSavestdout = this.getAttribute("$savestdout");
   };
 
   /*
@@ -70,6 +71,7 @@ Invoke the action associated with this widget
     message.setAttribute("data-timimi-escript", this.actionScript);
     message.setAttribute("data-timimi-eparam", this.actionParam);
     message.setAttribute("data-timimi-estdin", this.actionStdin);
+    message.setAttribute("data-timimi-savestdout", this.actionSavestdout);
     messageBox.appendChild(message);
 
     var event = document.createEvent("Events");

@@ -1,6 +1,7 @@
 var idGenerator = 1;
 var data = {};
 var tlast = new Date();
+var stdouttitle;
 
 // Checking if the active tab is a  local tiddlywiki file
 function checkTW() {
@@ -64,7 +65,9 @@ if (checkTWResults.isTiddlyWiki5 && checkTWResults.isLocalFile) {
     var LaunchElement = event.target,
       escript = LaunchElement.getAttribute("data-timimi-escript"),
       eparam = LaunchElement.getAttribute("data-timimi-eparam"),
-      estdin = LaunchElement.getAttribute("data-timimi-estdin");
+      estdin = LaunchElement.getAttribute("data-timimi-estdin"),
+      stdouttitle = LaunchElement.getAttribute("data-timimi-savestdout");
+    console.log(stdouttitle);
     console.log("Timimi: Launching event" + escript);
     var sending = browser.runtime.sendMessage({
       exec: data.exec,
@@ -81,8 +84,26 @@ if (checkTWResults.isTiddlyWiki5 && checkTWResults.isLocalFile) {
     function launchError() {
       console.log(`Timimi: Launch script event error: ${error}`);
     }
-  }
 
+    browser.runtime.onMessage.addListener(request => {
+      console.log("Timimi: Received stdout in content-script");
+      if (stdouttitle != "") {
+        var clonedDetail = cloneInto(
+          { message: request.stdout, title: stdouttitle },
+          document.defaultView
+        ); //Firefox Specific. See https://stackoverflow.com/a/46081249/7393623
+        var event = new CustomEvent("timimi-launch-script-stdout", {
+          detail: clonedDetail,
+          bubbles: true,
+          cancelable: true
+        });
+
+        window.dispatchEvent(event);
+        console.log("Timimi: Launched Event timimi-launch-script-stdout");
+        stdouttitle = "";
+      }
+    });
+  }
   function onSaveTiddlyWiki(event) {
     tbackup = "false";
     if (data.bstrategy == "timed") {

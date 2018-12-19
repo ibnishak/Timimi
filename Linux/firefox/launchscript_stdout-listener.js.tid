@@ -1,0 +1,38 @@
+created: 20181219014117152
+modified: 20181219022346313
+module-type: startup
+tags: 
+title: $:/plugins/tesseract/action-launchscript/stdout-listener.js
+type: application/javascript
+
+/*\
+title: $:/plugins/tesseract/action-launchscript/stdout-listener.js
+type: application/javascript
+module-type: startup
+
+Load core modules
+
+\*/
+(function() {
+  /*jslint node: true, browser: true */
+  /*global $tw: false */
+  "use strict";
+
+  // Export name and synchronous status
+  exports.name = "stdout-listener";
+  exports.after = ["startup"];
+  exports.synchronous = true;
+
+  exports.startup = function() {
+    window.addEventListener("timimi-launch-script-stdout", function(event) {
+      console.log("Timimi: Listening to event :" + event.type);
+      $tw.wiki.addTiddler(
+        new $tw.Tiddler({
+          title: event.detail.title,
+          text: event.detail.message
+        })
+      );
+      console.log("Event detail: " + event.detail.message);
+    });
+  };
+})();
