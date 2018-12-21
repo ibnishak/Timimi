@@ -17,7 +17,6 @@
 <a href="http://makeapullrequest.com" rel="nofollow" class="rich-diff-level-one">
 	<img src="https://camo.githubusercontent.com/a34cfbf37ba6848362bf2bee0f3915c2e38b1cc1/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f5052732d77656c636f6d652d627269676874677265656e2e7376673f7374796c653d666c61742d737175617265" alt="PRs Welcome" data-canonical-src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square" style="max-width:100%;">
 </a>
-[![HitCount](http://hits.dwyl.com/ibnishak/Timimi.svg)](http://hits.dwyl.com/ibnishak/Timimi)
 </p>
 
 
