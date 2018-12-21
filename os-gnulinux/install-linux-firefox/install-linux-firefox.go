@@ -1,4 +1,4 @@
-package installlinuxfirefox
+package main
 
 import (
 	"fmt"
@@ -22,7 +22,7 @@ var pldir = ".mozilla/native-messaging-hosts" //Platform Directory
 const tmpl = `{
   "name": "timimi",
   "description": "Native messaging host to save TW5",
-  "path": "{.Exec}}",
+  "path": "{{.Exec}}",
   "type": "stdio",
   "allowed_extensions": [ "timimi@tesseract.com" ]
 }

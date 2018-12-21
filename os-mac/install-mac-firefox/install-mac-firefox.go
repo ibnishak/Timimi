@@ -1,4 +1,4 @@
-package installmacfirefox
+package main
 
 import (
 	"fmt"
@@ -22,7 +22,7 @@ var pldir = "Library/Application Support/Mozilla/NativeMessagingHosts" //Platfor
 const tmpl = `{
   "name": "timimi",
   "description": "Native messaging host to save TW5",
-  "path": "{.Exec}}",
+  "path": "{{.Exec}}",
   "type": "stdio",
   "allowed_extensions": [ "timimi@tesseract.com" ]
 }
