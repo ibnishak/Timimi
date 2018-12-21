@@ -56,9 +56,12 @@ Tiddlyfox addon for firefox browser stopped working for post 57 versions of fire
 
 ### Installation
 
-#### Firefox
-Documentation Pending.
+Please see: https://ibnishak.github.io/Timimi/
 
+### Usage
+
+
+Please see: https://ibnishak.github.io/Timimi/
 
 ### To do
 
