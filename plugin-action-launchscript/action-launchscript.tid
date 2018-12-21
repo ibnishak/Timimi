@@ -1,0 +1,38 @@
+author: Riz
+core-version: 5.1.16
+description: Action-launchscript: Launch Scripts from standalone TW5
+list: readme
+plugin-type: plugin
+title: $:/plugins/tesseract/action-launchscript
+type: application/json
+version: 1.0.2
+
+{
+    "tiddlers": {
+        "$:/plugins/tesseract/action-launchscript/stdout-listener.js": {
+            "created": "20181219230736805",
+            "text": "/*\\\ntitle: $:/plugins/tesseract/action-launchscript/stdout-listener.js\ntype: application/javascript\nmodule-type: startup\n\nListen to stdout from scripts\n\n\\*/\n(function() {\n  /*jslint node: true, browser: true */\n  /*global $tw: false */\n  \"use strict\";\n\n  // Export name and synchronous status\n  exports.name = \"stdout-listener\";\n  exports.after = [\"startup\"];\n  exports.synchronous = true;\n\n  exports.startup = function() {\n    window.addEventListener(\"timimi-launch-script-stdout\", function(event) {\n      console.log(\"Timimi: Listening to event :\" + event.type);\n      if (typeof event.detail.sep == \"undefined\") {\n        $tw.wiki.addTiddler(\n          new $tw.Tiddler(\n            event.detail.creationFields,\n            event.detail.fields,\n            event.detail.modificationFields,\n            {\n              title: event.detail.title,\n              text: event.detail.message\n            }\n          )\n        );\n        $tw.notifier.display(\"$:/plugins/tesseract/action-launchscript/notification\");\n      } else {\n        var spl = event.detail.message.split(event.detail.sep);\n        $tw.wiki.addTiddler(\n          new $tw.Tiddler(\n            event.detail.creationFields,\n            event.detail.fields,\n            event.detail.modificationFields,\n            {\n              title: spl[0],\n              text: spl[1]\n            }\n          )\n        );\n        $tw.notifier.display(\"$:/plugins/tesseract/action-launchscript/notification\");\n      }\n\n      console.log(\"Event detail: \" + event.detail.message);\n    });\n  };\n})();\n",
+            "type": "application/javascript",
+            "title": "$:/plugins/tesseract/action-launchscript/stdout-listener.js",
+            "module-type": "startup",
+            "modified": "20181219230831374"
+        },
+        "$:/plugins/tesseract/action-launchscript/notification": {
+            "text": "Script execution concluded",
+            "type": "application/x-tiddler",
+            "title": "$:/plugins/tesseract/action-launchscript/notification",
+            "tags": "",
+            "modified": "20181219185942586",
+            "created": "20181219185849816"
+        },
+        "$:/plugins/tesseract/action-launchscript/action-launchscript-widget.js": {
+            "created": "20181216022522329",
+            "text": "/*\\\ntitle: $:/plugins/tesseract/action-launchscript/action-launchscript-widget.js\ntype: application/javascript\nmodule-type: widget\n\nAction widget to launch scripts from standalone  HTML\n\n\\*/\n(function() {\n  /*jslint node: true, browser: true */\n  /*global $tw: false */\n  \"use strict\";\n\n  var Widget = require(\"$:/core/modules/widgets/widget.js\").widget;\n\n  var LaunchScriptWidget = function(parseTreeNode, options) {\n    this.initialise(parseTreeNode, options);\n  };\n\n  /*\nInherit from the base widget class\n*/\n  LaunchScriptWidget.prototype = new Widget();\n\n  /*\nRender this widget into the DOM\n*/\n  LaunchScriptWidget.prototype.render = function(parent, nextSibling) {\n    this.computeAttributes();\n    this.execute();\n  };\n\n  /*\nCompute the internal state of the widget\n*/\n  LaunchScriptWidget.prototype.execute = function() {\n    this.actionScript = this.getAttribute(\"$script\");\n    this.actionParam = this.getAttribute(\"$param\");\n    this.actionStdin = this.getAttribute(\"$stdin\");\n    this.actionBaseTitle = this.getAttribute(\"$basetitle\");\n    this.actionSep = this.getAttribute(\"$sep\");\n    this.actionTimestamp = this.getAttribute(\"$timestamp\",\"yes\") === \"yes\";\n  };\n\n  /*\nRefresh the widget by ensuring our attributes are up to date\n*/\n  LaunchScriptWidget.prototype.refresh = function(changedTiddlers) {\n    var changedAttributes = this.computeAttributes();\n    if ($tw.utils.count(changedAttributes) > 0) {\n      this.refreshSelf();\n      return true;\n    }\n    return this.refreshChildren(changedTiddlers);\n  };\n\n  /*\nInvoke the action associated with this widget\n*/\n LaunchScriptWidget.prototype.invokeAction = function(\n      triggeringWidget,\n      event\n  ) {\n      var messageBox = document.getElementById(\"tiddlyfox-message-box\");\n      var message = document.createElement(\"div\");\n      messageBox.appendChild(message);\n\n      var title = this.wiki.generateNewTitle(this.actionBaseTitle),\n        fields = {},\n        creationFields,\n        modificationFields;\n\n        $tw.utils.each(this.attributes,function(attribute,name) {\n          if(name.charAt(0) !== \"$\") {\n            fields[name] = attribute;\n          }\n        });\n        if(this.actionTimestamp) {\n          creationFields = this.wiki.getCreationFields();\n          modificationFields = this.wiki.getModificationFields();\n        }\n        var eventDetail = { \n            escript: this.actionScript,\n            eparam: this.actionParam,\n            estdin: this.actionStdin,\n            title: title,\n            sep: this.actionSep,\n            fields: fields,\n            creationFields: creationFields,\n            modificationFields: modificationFields \n        }\n      var event = new CustomEvent(\"timimi-action-launch\", {\n          detail: eventDetail,\n          bubbles: true,\n          cancelable: true\n      });\n      message.dispatchEvent(event);\n\n      console.log(\"Event dispatched\")\n\n      return true; // Action was invoked\n  }; \n\n\n  exports[\"action-launchscript\"] = LaunchScriptWidget;\n})();\n",
+            "type": "application/javascript",
+            "title": "$:/plugins/tesseract/action-launchscript/action-launchscript-widget.js",
+            "tags": "",
+            "module-type": "widget",
+            "modified": "20181219230917385"
+        }
+    }
+}
