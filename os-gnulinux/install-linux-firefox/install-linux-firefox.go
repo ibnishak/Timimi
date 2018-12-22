@@ -24,7 +24,7 @@ const tmpl = `{
   "description": "Native messaging host to save TW5",
   "path": "{{.Exec}}",
   "type": "stdio",
-  "allowed_extensions": [ "timimi@tesseract.com" ]
+  "allowed_extensions": [ "timimi@tesseract.io" ]
 }
 `
 

@@ -11,12 +11,9 @@
 <a href="https://GitHub.com/ibnishak/timimi/graphs/commit-activity" class="rich-diff-level-one">
 	<img src="https://camo.githubusercontent.com/0e6a3f975d68b438efec82fef1f9491600606df8/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f4d61696e7461696e65642533462d7965732d677265656e2e737667" alt="Maintenance" data-canonical-src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" style="max-width:100%;">
 </a>
-<a href="https://GitHub.com/ibnishak/timimi/stargazers/" class="rich-diff-level-one">
-	<img src="https://camo.githubusercontent.com/ea01a1feb6d3db0cbe7c102fe98407f05fc55413/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f73746172732f69626e697368616b2f74696d696d692e7376673f7374796c653d736f6369616c266c6162656c3d53746172266d61784167653d32353932303030" alt="GitHub stars" data-canonical-src="https://img.shields.io/github/stars/ibnishak/timimi.svg?style=social&amp;label=Star&amp;maxAge=2592000" style="max-width:100%;">
-</a>
-<a href="http://makeapullrequest.com" rel="nofollow" class="rich-diff-level-one">
-	<img src="https://camo.githubusercontent.com/a34cfbf37ba6848362bf2bee0f3915c2e38b1cc1/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f5052732d77656c636f6d652d627269676874677265656e2e7376673f7374796c653d666c61742d737175617265" alt="PRs Welcome" data-canonical-src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square" style="max-width:100%;">
-	<img src="resources/go.svg" style="max-width:100%;">
+	<img src="resources/golang.svg" style="max-width:100%;">
+	<img src="resources/licence.svg" style="max-width:100%;">
+	<a href="https://tiddlywiki.com/" target="_blank"><img src="resources/tw.svg" style="max-width:100%;"></a>
 </a>
 </p>
 
