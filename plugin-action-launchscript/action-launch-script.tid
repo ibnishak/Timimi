@@ -5,17 +5,17 @@ list: readme
 plugin-type: plugin
 title: $:/plugins/tesseract/action-launchscript
 type: application/json
-version: 1.0.2
+version: 1.0.3
 
 {
     "tiddlers": {
         "$:/plugins/tesseract/action-launchscript/stdout-listener.js": {
             "created": "20181219230736805",
-            "text": "/*\\\ntitle: $:/plugins/tesseract/action-launchscript/stdout-listener.js\ntype: application/javascript\nmodule-type: startup\n\nListen to stdout from scripts\n\n\\*/\n(function() {\n  /*jslint node: true, browser: true */\n  /*global $tw: false */\n  \"use strict\";\n\n  // Export name and synchronous status\n  exports.name = \"stdout-listener\";\n  exports.after = [\"startup\"];\n  exports.synchronous = true;\n\n  exports.startup = function() {\n    window.addEventListener(\"timimi-launch-script-stdout\", function(event) {\n      console.log(\"Timimi: Listening to event :\" + event.type);\n      if (typeof event.detail.sep == \"undefined\") {\n        $tw.wiki.addTiddler(\n          new $tw.Tiddler(\n            event.detail.creationFields,\n            event.detail.fields,\n            event.detail.modificationFields,\n            {\n              title: event.detail.title,\n              text: event.detail.message\n            }\n          )\n        );\n        $tw.notifier.display(\"$:/plugins/tesseract/action-launchscript/notification\");\n      } else {\n        var spl = event.detail.message.split(event.detail.sep);\n        $tw.wiki.addTiddler(\n          new $tw.Tiddler(\n            event.detail.creationFields,\n            event.detail.fields,\n            event.detail.modificationFields,\n            {\n              title: spl[0],\n              text: spl[1]\n            }\n          )\n        );\n        $tw.notifier.display(\"$:/plugins/tesseract/action-launchscript/notification\");\n      }\n\n      console.log(\"Event detail: \" + event.detail.message);\n    });\n  };\n})();\n",
+            "text": "/*\\\ntitle: $:/plugins/tesseract/action-launchscript/stdout-listener.js\ntype: application/javascript\nmodule-type: startup\n\nListen to stdout from scripts\n\n\\*/\n(function() {\n  /*jslint node: true, browser: true */\n  /*global $tw: false */\n  \"use strict\";\n\n  // Export name and synchronous status\n  exports.name = \"stdout-listener\";\n  exports.after = [\"startup\"];\n  exports.synchronous = true;\n\n  exports.startup = function() {\n    document.addEventListener(\"timimi-launch-script-stdout\", function(event) {\n      console.log(\"Timimi: Listening to event :\" + event.type);\n      if (typeof event.detail.sep == \"undefined\") {\n        $tw.wiki.addTiddler(\n          new $tw.Tiddler(\n            event.detail.creationFields,\n            event.detail.fields,\n            event.detail.modificationFields,\n            {\n              title: event.detail.title,\n              text: event.detail.message\n            }\n          )\n        );\n        $tw.notifier.display(\"$:/plugins/tesseract/action-launchscript/notification\");\n      } else {\n        var spl = event.detail.message.split(event.detail.sep);\n        $tw.wiki.addTiddler(\n          new $tw.Tiddler(\n            event.detail.creationFields,\n            event.detail.fields,\n            event.detail.modificationFields,\n            {\n              title: spl[0],\n              text: spl[1]\n            }\n          )\n        );\n        $tw.notifier.display(\"$:/plugins/tesseract/action-launchscript/notification\");\n      }\n\n      console.log(\"Event detail: \" + event.detail.message);\n    });\n  };\n})();\n",
             "type": "application/javascript",
             "title": "$:/plugins/tesseract/action-launchscript/stdout-listener.js",
             "module-type": "startup",
-            "modified": "20181219230831374"
+            "modified": "20181222133006174"
         },
         "$:/plugins/tesseract/action-launchscript/notification": {
             "text": "Script execution concluded",
