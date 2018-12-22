@@ -9,9 +9,15 @@ go build timimi.go
 echo "Moving timimi"
 mv timimi ../pkg/linux-firefox
 echo "Building install"
-
-cd install-linux-firefox
+pushd install-linux-firefox
 go build install-linux-firefox.go
 echo "Moving install"
 mv install-linux-firefox ../../pkg/linux-firefox
+popd
+
+pushd ../pkg
+echo "Zipping"
+zip -r linux-firefox.zip linux-firefox
+rm -rf linux-firefox
+popd
 echo "Finished"
