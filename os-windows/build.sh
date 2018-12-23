@@ -23,8 +23,8 @@ cp static/scripts.ico windows-temp-package/
 cp install-windows-firefox.nsi windows-temp-package/
 cp timimi.json windows-temp-package/
 
-
 mv windows-temp-package ../pkg
 ls ../pkg
+
 
 echo "Windows build finished"
