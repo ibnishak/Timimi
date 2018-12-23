@@ -5,7 +5,7 @@ if [ ! -d "../pkg/linux-firefox" ]; then
   fi 
 
 echo "Building timimi"
-go build timimi.go
+env GOOS=linux GOARCH=amd64 go build timimi.go
 echo "Moving timimi"
 mv timimi ../pkg/linux-firefox
 echo "Building install"
