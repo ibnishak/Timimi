@@ -262,7 +262,7 @@ func bytesToString(data []byte) string {
 }
 func ensuredir(dir string) {
 	if _, err := os.Stat(dir); os.IsNotExist(err) {
-		err = os.Mkdir(dir, 0666)
+		err = os.MkdirAll(dir, 0666)
 		if err != nil {
 			senderr("Error: Creating backup directory failed", err)
 		}

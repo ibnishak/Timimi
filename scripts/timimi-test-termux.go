@@ -98,7 +98,7 @@ func main() {
 		wg.Add(1)
 		go func() {
 			defer wg.Done()
-			err = ioutil.WriteFile(data.Path, []byte(data.Content), 0666)
+			err = ioutil.WriteFile(data.Path, []byte(data.Content), 0744)
 			if err != nil {
 				// log.Fatal(err)
 				senderr("Save failed with error", err)
@@ -173,7 +173,7 @@ func backup(data indata) {
 			p := int(math.Pow(2, n))
 			if mid%p == 0 {
 				tfinal = fmt.Sprintf("%s-%d%s", tfile, p, ext)
-				err := ioutil.WriteFile(filepath.Join(tdir, tfinal), []byte(data.Content), 0666)
+				err := ioutil.WriteFile(filepath.Join(tdir, tfinal), []byte(data.Content), 0744)
 				if err != nil {
 					// log.Fatal(err)
 					senderr("TOH Snapshot backup failed with error", err)
@@ -188,7 +188,7 @@ func backup(data indata) {
 		if save != true {
 			if mid < r {
 				tfinal = fmt.Sprintf("%s-A%d%s", tfile, mid, ext)
-				err := ioutil.WriteFile(filepath.Join(tdir, tfinal), []byte(data.Content), 0666)
+				err := ioutil.WriteFile(filepath.Join(tdir, tfinal), []byte(data.Content), 0744)
 				if err != nil {
 					// log.Fatal(err)
 					senderr("Error: TOH recent backups failed", err)
@@ -198,7 +198,7 @@ func backup(data indata) {
 			} else {
 				c := mid % r
 				tfinal = fmt.Sprintf("%s-A%d%s", tfile, c, ext)
-				err := ioutil.WriteFile(filepath.Join(tdir, tfinal), []byte(data.Content), 0666)
+				err := ioutil.WriteFile(filepath.Join(tdir, tfinal), []byte(data.Content), 0744)
 				if err != nil {
 					senderr("Error: TOH recent backups failed with error: ", err)
 				}
@@ -216,7 +216,7 @@ func backup(data indata) {
 		if mid%pint == 0 {
 
 			tfinal = fmt.Sprintf("%s-%s%s", tfile, buildFileName(), ext)
-			err := ioutil.WriteFile(filepath.Join(tdir, tfinal), []byte(data.Content), 0666)
+			err := ioutil.WriteFile(filepath.Join(tdir, tfinal), []byte(data.Content), 0744)
 			if err != nil {
 				// log.Fatal(err)
 				senderr("Error: Per save backups failed", err)
@@ -228,7 +228,7 @@ func backup(data indata) {
 	} else if data.Bstrategy == "timed" {
 		if data.TBackup == "true" {
 			tfinal = fmt.Sprintf("%s-%s%s", tfile, buildFileName(), ext)
-			err := ioutil.WriteFile(filepath.Join(tdir, tfinal), []byte(data.Content), 0666)
+			err := ioutil.WriteFile(filepath.Join(tdir, tfinal), []byte(data.Content), 0744)
 			if err != nil {
 				// log.Fatal(err)
 				senderr("Error: Timed backups failed", err)
@@ -262,7 +262,7 @@ func bytesToString(data []byte) string {
 }
 func ensuredir(dir string) {
 	if _, err := os.Stat(dir); os.IsNotExist(err) {
-		err = os.MkdirAll(dir, 0666)
+		err = os.MkdirAll(dir, 0744)
 		if err != nil {
 			senderr("Error: Creating backup directory failed", err)
 		}

@@ -1,2 +1,0 @@
-* Ensure that in windows/timimi.go : exec path is appropriate
-* Ensure that in mac/timimi.go : exec path is appropriate
