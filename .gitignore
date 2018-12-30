@@ -1,8 +1,7 @@
-./scripts/demoLog
-./scripts/tw
 Timimi.code-workspace
 os-windows/timimi.exe
 os-windows/windows-temp-package
 pkg
 scripts/Timimi-Second-Test-Success.txt
 scripts/demoLog/
+scripts/tw
