@@ -20,6 +20,15 @@
 
 <br/><br/><br/>
 
+### Announcement
+
+
+Owing to less than optimal conditions in personal life, porting Timimi 2.0 to chrome and other browsers are indefinitely postponed. Timimi 1.0 will still work in Windows and Linux in Firefox as well as chrome, while Timimi 2.0 will work in Windows, Linux and Mac but only in Firefox browser. So if you are a Firefox user, you are strongly urged to update to lastest Timimi release.
+
+Sincerely,
+Riz
+
+
 
 * [Intro](#intro)
 * [Supported browsers](#supported-browsers)
@@ -43,6 +52,7 @@ Tiddlyfox addon for firefox browser stopped working for post 57 versions of fire
 
 
 * Firefox >57
+
 
 ### Supported OS
 
