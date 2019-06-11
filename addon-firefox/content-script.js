@@ -2,7 +2,14 @@ var idGenerator = 1;
 var data = {};
 var tlast = new Date();
 var indata = {};
-// Checking if the active tab is a  local tiddlywiki file
+function injectExtensionScript(path) {
+  var script = document.createElement('script');
+  script.src = browser.extension.getURL(path); // use (browser || chrome) for cross-browser support
+  (document.head || document.documentElement).appendChild(script);
+  script.onload = script.remove;
+}
+
+// Checking if the active tab is a local tiddlywiki file
 function checkTW() {
   var results = {};
   // Test for TiddlyWiki Classic
@@ -28,14 +35,14 @@ function checkTW() {
   }
   return results;
 }
+var checkTWResults = checkTW();
+
 // Loading settings from browser storage
 var getting = browser.storage.sync.get();
 getting.then(onGot, syncError);
-
 function syncError(error) {
   console.log(`Error in getting values from browser storage: ${error}`);
 }
-
 function onGot(item) {
   data = item;
   if (data.backup == "yes") {
@@ -44,9 +51,7 @@ function onGot(item) {
   }
 }
 
-var checkTWResults = checkTW();
-
-if (checkTWResults.isTiddlyWiki5 && checkTWResults.isLocalFile) {
+if (checkTWResults.isTiddlyWiki && checkTWResults.isLocalFile) {
   var messageBox = document.getElementById("tiddlyfox-message-box");
   if (!messageBox) {
     messageBox = document.createElement("div");
@@ -127,6 +132,9 @@ if (checkTWResults.isTiddlyWiki5 && checkTWResults.isLocalFile) {
       console.log(`Error: ${error}`);
     }
   }
+}
+if (checkTWResults.isTiddlyWikiClassic && checkTWResults.isLocalFile) {
+  injectExtensionScript('patch-classic-io.js');
 }
 browser.runtime.onMessage.addListener(request => {
   console.log("Timimi: Received stdout in content-script");
