@@ -28,5 +28,12 @@ window.mozillaSaveFile = function(path, content) {
   return true;
 };
 
-// not necessary to track the exact version, but important to change when the overwritten methods are updated
-window.timimiClassicVersion = "2.0.2";
+// expose the supported I/O events
+window.eventBasedIO = {
+	save: {
+		name: 'tiddlyfox-save-file'
+	},
+	saved: {
+		name: 'tiddlyfox-have-saved-file'
+	}
+};
