@@ -2,7 +2,7 @@ window.mozillaLoadFile = function(path) {
   try {
     // Just read the file synchronously
     var xhReq = new XMLHttpRequest();
-    xhReq.open("GET", "file:///" + escape(path), false);
+    xhReq.open("GET", "file:///" + encodeURIComponent(path), false);
     xhReq.send(null);
     return xhReq.responseText;
   } catch(ex) {
