@@ -2,6 +2,8 @@ var idGenerator = 1;
 var data = {};
 var tlast = new Date();
 var indata = {};
+
+// If and only if the local file is TW-Classic(old) file, inject the patch enabling it to be saved with tiddlyfox-derived savers
 function injectExtensionScript(path) {
   var script = document.createElement('script');
   script.src = browser.extension.getURL(path); // use (browser || chrome) for cross-browser support
@@ -133,9 +135,11 @@ if (checkTWResults.isTiddlyWiki && checkTWResults.isLocalFile) {
     }
   }
 }
+
 if (checkTWResults.isTiddlyWikiClassic && checkTWResults.isLocalFile) {
   injectExtensionScript('patch-classic-io.js');
 }
+
 browser.runtime.onMessage.addListener(request => {
   console.log("Timimi: Received stdout in content-script");
   var outdata = cloneInto(
