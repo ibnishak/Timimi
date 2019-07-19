@@ -29,7 +29,7 @@ Sincerely,
 Riz
 
 
-
+* [Updates](#updates)
 * [Intro](#intro)
 * [Supported browsers](#supported-browsers)
 * [Supported OS](#supported-os)
@@ -39,6 +39,10 @@ Riz
 * [Cons](#cons)
 * [Credits](#credits)
 
+
+### Updates
+
+July 20, 2019: Thanks to the efforts by [@YakovL](https://github.com/YakovL), timimi has basic support for saving Tiddlywiki Classic too!
 
 ### Intro
 
