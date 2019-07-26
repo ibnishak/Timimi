@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="options.css" />
+    <title>Timimi Settings</title>
+  </head>
+
+  <body>
+    <h3>Settings</h3>
+
+    <form>
+      <!--
+        <fieldset>
+        	<legend>Backup</legend>
+      -->
+      <label class="label" for="backup">Create backup</label>
+      <div class="select-wrap">
+        <select class="select" id="backup">
+          <option value="no">No</option>
+          <option value="yes">Yes</option>
+        </select>
+      </div>
+      <label class="label" for="bpath">Backup location</label>
+      <input class="input" type="text" id="bpath" />
+      <label class="label" for="bstrategy">Backup method</label>
+      <div class="select-wrap">
+        <select class="select" id="bstrategy">
+          <option value="toh">Tower of Hanoi</option>
+          <option value="psave">Every nth save</option>
+          <option value="timed">Every nth min</option>
+        </select>
+      </div>
+      <div id="toh" class="bopt">
+        <fieldset style="border: 1px solid rgba(255, 160, 122, .7);">
+          <legend>Tower of Hanoi</legend>
+          <label class="label" for="tohrecent">Number of recent saves</label>
+          <input class="input" type="text" id="tohrecent" />
+          <label class="label" for="tohlevel">Number of levels</label>
+          <input
+            class="input"
+            type="range"
+            min="3"
+            max="15"
+            value="8"
+            id="tohlevel"
+          />
+          <p style="text-align: right;">Value: <span id="rangeout"></span></p>
+        </fieldset>
+      </div>
+      <div id="psave" class="bopt">
+        <fieldset style="border: 1px solid rgba(122, 150, 255, .7);">
+          <legend>Every nth save</legend>
+          <label class="label" for="psint"
+            >Number of saves between 2 backups</label
+          >
+          <input class="input" type="text" id="psint" />
+        </fieldset>
+      </div>
+      <div id="timed" class="bopt">
+        <fieldset style="border: 1px solid rgba(81, 211, 92, 0.7);">
+          <legend>Every nth min</legend>
+          <label class="label" for="tint"
+            >Number of minutes after last save</label
+          >
+          <input class="input" type="text" id="tint" />
+        </fieldset>
+      </div>
+      <label class="label" for="exec">Allow script execution</label>
+      <div class="select-wrap">
+        <select class="select" id="exec">
+          <option value="no">No</option>
+          <option value="yes">Yes</option>
+        </select>
+      </div>
+      <div class="centered">
+        <button type="submit">
+          <span style="outline: none !important;">Save</span>
+        </button>
+      </div>
+      <!-- Form End -->
+    </form>
+
+    <script src="options.js"></script>
+  </body>
+</html>
