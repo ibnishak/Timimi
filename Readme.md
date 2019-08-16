@@ -50,7 +50,7 @@ Timimi is a webextension using native messaging API that allows it to save stand
 
 Tiddlyfox addon for firefox browser stopped working for post 57 versions of firefox when mozilla switched over to sandbox model, restricting access to the file system. However webextension addons provide APIs which interface with filesystem. This is an addon using native messaging, essentially handing over the contents to a webextension host which does the actual saving. For the end user it means a couple of extra steps to install the addon but once installed, you can save the standalone TW from anywhere in your harddrive without any more interactions, like the original Tiddlyfox addon.
 
-
+**Note:** This extention only works on tiddlywiki html files. (ie. It will not work with the nodejs server, or similar.)
 
 ### Supported browsers
 
