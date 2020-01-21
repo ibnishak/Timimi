@@ -33,11 +33,12 @@
         "matches": ["file:///*"],
         "js": ["content-script.js"]
     }],
-    "options_ui": { 
-         "page": "settings/options.html" 
+    "options_ui": {
+         "page": "settings/options.html"
      },
     "permissions": [
         "nativeMessaging",
-        "storage"
+        "storage",
+        "notifications"
     ]
 }
