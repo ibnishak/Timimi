@@ -29,6 +29,12 @@ function onResponse(response) {
 
 function onError(error) {
   console.log(`Timimi: Native Host Error: ${error}`);
+  browser.notifications.create({
+    "type": "basic",
+    "iconUrl": browser.extension.getURL("../resources/fish.png"),
+    "title": "Could not save the Tiddlywiki file",
+    "message": `Have you installed the Timimi native application?\nNative Host Error: ${error}`
+  });
 }
 
 function handleMessage(request, sender, sendResponse) {
