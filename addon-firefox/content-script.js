@@ -65,28 +65,6 @@ if (checkTWResults.isTiddlyWiki && checkTWResults.isLocalFile) {
   // Attach the event handler to the message box
   messageBox.addEventListener("tiddlyfox-save-file", onSaveTiddlyWiki, false);
   messageBox.addEventListener("timimi-action-launch", onActionLaunch, false);
-
-  function onActionLaunch(event) {
-    console.log("Timimi: Received event: " + event.type);
-    indata = event.detail;
-    var LaunchElement = event.target;
-    console.log("Timimi: Launching event" + event.detail.escript);
-    var sending = browser.runtime.sendMessage({
-      exec: data.exec,
-      escript: event.detail.escript,
-      eparam: event.detail.eparam,
-      estdin: event.detail.estdin
-    });
-    sending.then(launchResponse, launchError);
-    function launchResponse(message) {
-      LaunchElement.parentNode.removeChild(LaunchElement);
-      console.log("Timimi: Launch script event concluded");
-    }
-
-    function launchError() {
-      console.log(`Timimi: Launch script event error: ${error}`);
-    }
-  }
   function onSaveTiddlyWiki(event) {
     tbackup = "false";
     if (data.bstrategy == "timed") {
@@ -134,6 +112,28 @@ if (checkTWResults.isTiddlyWiki && checkTWResults.isLocalFile) {
       console.log(`Error: ${error}`);
     }
   }
+  function onActionLaunch(event) {
+    console.log("Timimi: Received event: " + event.type);
+    indata = event.detail;
+    var LaunchElement = event.target;
+    console.log("Timimi: Launching event" + event.detail.escript);
+    var sending = browser.runtime.sendMessage({
+      exec: data.exec,
+      escript: event.detail.escript,
+      eparam: event.detail.eparam,
+      estdin: event.detail.estdin
+    });
+    sending.then(launchResponse, launchError);
+    function launchResponse(message) {
+      LaunchElement.parentNode.removeChild(LaunchElement);
+      console.log("Timimi: Launch script event concluded");
+    }
+
+    function launchError() {
+      console.log(`Timimi: Launch script event error: ${error}`);
+    }
+  }
+
 }
 
 if (checkTWResults.isTiddlyWikiClassic && checkTWResults.isLocalFile) {
