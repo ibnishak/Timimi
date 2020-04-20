@@ -38,6 +38,7 @@
      },
     "permissions": [
         "nativeMessaging",
-        "storage"
+        "storage",
+        "notifications"
     ]
 }
