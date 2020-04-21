@@ -8,7 +8,6 @@ import (
 	"io/ioutil"
 	"math"
 	"os"
-	"os/exec"
 	"path/filepath"
 	"strconv"
 	"strings"
@@ -73,10 +72,6 @@ type indata struct {
 	Tohrecent string `json:"tohrecent"`
 	Tohlevel  string `json:"tohlevel"`
 	Psint     string `json:"psint"`
-	Exec      string `json:"exec"`
-	Escript   string `json:"escript"`
-	Eparam    string `json:"eparam"`
-	Estdin    string `json:"estdin"`
 	TBackup   string `json:"tbackup"`
 }
 
@@ -84,14 +79,12 @@ func main() {
 
 	msg, err := receive(os.Stdin)
 	if err != nil {
-		// panic(err)
 		senderr("StdIn failed with error", err)
 	}
 	var data indata
 	err = json.Unmarshal([]byte(msg), &data)
 	if err != nil {
 		senderr("UnMarshall Failed with error ", err)
-		// panic(err)
 	}
 	sendresp("Unmarshall successful")
 	if data.Path != "" {
@@ -100,7 +93,6 @@ func main() {
 			defer wg.Done()
 			err = ioutil.WriteFile(data.Path, []byte(data.Content), 0666)
 			if err != nil {
-				// log.Fatal(err)
 				senderr("Save failed with error", err)
 			}
 			sendresp(fmt.Sprintf("Saved Successfully to %s", data.Path))
@@ -110,22 +102,7 @@ func main() {
 		wg.Add(1)
 		go backup(data)
 	}
-	if data.Exec == "yes" {
-		efinal := filepath.Join(os.Getenv("HOME"), ".timimi", data.Escript)
-		sendresp(fmt.Sprintf("Begining execution of %s", efinal))
-		cmd := exec.Command(efinal, data.Eparam)
-		if data.Estdin != "" {
-			cmd.Stdin = strings.NewReader(data.Estdin)
-		}
 
-		stdoutStderr, err := cmd.CombinedOutput()
-		if err != nil {
-			senderr("Action Script Error: ", err)
-		}
-
-		sendresp("Script execution completed")
-		od.Stdout = bytesToString(stdoutStderr)
-	}
 	wg.Wait()
 	reply, _ := json.Marshal(od)
 	post(reply, os.Stdout)
