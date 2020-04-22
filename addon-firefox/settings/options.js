@@ -8,6 +8,12 @@ function saveOptions(e) {
     psint: document.querySelector("#psint").value,
     tint: document.querySelector("#tint").value
   });
+  browser.notifications.create({
+    "type": "basic",
+    "title": "Timimi preferences SAVED",
+    "iconUrl": browser.runtime.getURL("icons/index.svg"),
+    "message": "Please reload the TW5 browser tabs for the new preferences to take effect"
+  });
 }
 
 function restoreOptions() {

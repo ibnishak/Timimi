@@ -7,6 +7,7 @@ function onError(error) {
   browser.notifications.create({
     "type": "basic",
     "title": "Timimi save FAILED",
+    "iconUrl": browser.runtime.getURL("icons/index.svg"),
     "message": error.toString()
   });
 }
