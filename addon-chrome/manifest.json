@@ -11,14 +11,6 @@
         "48": "icons/icon48.png",
         "128": "icons/icon128.png"
     },
-    "applications":
-    {
-        "gecko":
-        {
-            "id": "timimi@tesseract.io",
-            "strict_min_version": "57.0"
-        }
-    },
     "background":
     {
         "scripts": ["background.js"],
