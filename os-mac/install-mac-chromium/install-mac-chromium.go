@@ -25,7 +25,7 @@ const tmpl = `{
   "path": "{{.Exec}}",
   "type": "stdio",
    "allowed_origins": [
-    "chrome-extension://nfnlgilmocdfjbkapepflhffocndognj/"
+    "chrome-extension://mnggafnmmhdoplbffagjihajeeikgbcg/"
   ]
 }
 `
