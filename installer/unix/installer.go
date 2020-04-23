@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"html/template"
-	"log"
 	"os"
 	"path"
 	"runtime"
@@ -34,7 +33,7 @@ const firefoxtmpl = `{
 
 func main() {
 
-	color.Cyan("Hello There\nStarting Timimi Installation")
+	color.Cyan("Hello There\nStarting Timimi Installation\n\n")
 	browser, err := findbrowser()
 	if err != nil {
 		fmt.Println("Unexpected error in choosing browser")
@@ -48,14 +47,14 @@ func main() {
 
 	var h host
 	h.Exec = execpath
-	createDirIfNotExist(path.Base(execpath))
-	createDirIfNotExist(path.Base(manifestpath))
+	createDirIfNotExist(path.Dir(execpath))
+	createDirIfNotExist(path.Dir(manifestpath))
 
-	fmt.Printf("Created host directory")
+	fmt.Println("Created host directory")
 
 	f, err := os.Create(manifestpath) // Create host manifest file
 	if err != nil {
-		log.Fatal("Create file: ", err)
+		fmt.Println("Error while creating manifest file: ", err)
 		return
 	}
 	defer f.Close()
@@ -67,20 +66,20 @@ func main() {
 		t, err = t.Parse(firefoxtmpl)
 	}
 	if err != nil {
-		log.Fatal("Parse: ", err)
+		fmt.Println("Parse: ", err)
 		return
 	}
 
 	err = t.Execute(f, h) // Write template "t" to file "f" with information taken from "host"
 	if err != nil {
-		log.Fatal("Execute: ", err)
+		fmt.Println("Execute: ", err)
 		return
 	}
 	fmt.Printf("Created host manifest: %s\n", cyan(manifestpath))
 	if _, err := os.Stat(execpath); os.IsNotExist(err) {
 		err = os.Rename("timimi", execpath) // Rename is golang's way of moving file.
 		if err != nil {
-			log.Fatal("Move: ", err)
+			fmt.Println("Move: ", err)
 			return
 		}
 	}
@@ -93,9 +92,9 @@ func main() {
 
 func createDirIfNotExist(dir string) {
 	if _, err := os.Stat(dir); os.IsNotExist(err) {
-		err = os.MkdirAll(dir, 0755)
+		err = os.MkdirAll(dir, 0777)
 		if err != nil {
-			panic(err)
+			fmt.Println("Error while creating directory", dir, err.Error())
 		}
 	}
 }
