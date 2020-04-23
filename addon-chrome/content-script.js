@@ -5,7 +5,7 @@ var tlast = new Date();
 // If and only if the local file is TW-Classic(old) file, inject the patch enabling it to be saved with tiddlyfox-derived savers
 function injectExtensionScript(path) {
   var script = document.createElement('script');
-  script.src = browser.extension.getURL(path); // use (browser || chrome) for cross-browser support
+  script.src = chrome.extension.getURL(path); 
   (document.head || document.documentElement).appendChild(script);
   script.onload = script.remove;
 }
@@ -37,23 +37,12 @@ function checkTW() {
   return results;
 }
 
-// Loading settings from browser storage
+// Loading settings from chrome storage
 function getSettings() {
-  var getting = browser.storage.sync.get();
-  getting.then(onGot, syncError);
-  function syncError(error) {
-    console.log(`Error in getting values from browser storage: ${error}`);
-  }
-  function onGot(item) {
-    timimisettings = item;
-    if (timimisettings.backup == "yes") {
-      console.log("Timimi: Backups enabled");
-      console.log("Timimi: Backup method: " + timimisettings.bstrategy);
-    }
-  }
+  chrome.storage.sync.get(["bpath", "bstrategy", "tohrecent", "tohlevel", "psint", "tint" ], function(result) {
+    timimisettings = result;
+  });
 }
-
-
 
 // ----- START HERE -------- //
 
@@ -103,7 +92,7 @@ if (checkTWResults.isTiddlyWiki && checkTWResults.isLocalFile) {
       messageId = "tiddlywiki-save-file-response-" + idGenerator++;
 
     // Send the details to background script. Not using port because we need a promise and port.postMessage is not a promise
-    var sending = browser.runtime.sendMessage({
+    chrome.runtime.sendMessage({
       path: path,
       messageId: idGenerator,
       content: content,
@@ -115,8 +104,8 @@ if (checkTWResults.isTiddlyWiki && checkTWResults.isLocalFile) {
       tohlevel: timimisettings.tohlevel,
       psint: timimisettings.psint,
       tbackup: tbackup
-    });
-    sending.then(handleSent, handleError);
+    }, handleSent);
+    
 
     function handleSent(message) {
       messageElement.parentNode.removeChild(messageElement);
@@ -126,10 +115,7 @@ if (checkTWResults.isTiddlyWiki && checkTWResults.isLocalFile) {
       event.savedFilePath = path;
       messageElement.dispatchEvent(event);
     }
-
-    function handleError() {
-      console.log(`Error: ${error}`);
-    }
+  
   }
 }
 

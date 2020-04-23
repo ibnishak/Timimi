@@ -1,22 +1,25 @@
 function onResponse(response) {
-  console.log("Timimi: Native Host Responded without errors");
+  if (chrome.runtime.lastError) {
+    onError(chrome.runtime.lastError.message)
+  } else {
+    console.log("Timimi: Native Host Responded without errors");
+  }
 }
 
 function onError(error) {
   console.log(`Timimi: Native Host Error: ${error}`);
-  browser.notifications.create({
+  chrome.notifications.create({
     "type": "basic",
     "title": "Timimi save FAILED",
-    "iconUrl": browser.runtime.getURL("icons/index.svg"),
-    "message": error.toString()
+    "iconUrl": chrome.runtime.getURL("icons/index.svg"),
+    "message": "Error on contacting timimi host"
   });
 }
 
-function handleMessage(request, sender, sendResponse) {
+function handleMessage(request) {
   console.log("Timimi: Sending native message");
-  var sending = browser.runtime.sendNativeMessage("timimi", request);
-  sending.then(onResponse, onError);
+  chrome.runtime.sendNativeMessage("timimi", request, onResponse);
 }
 
 
-browser.runtime.onMessage.addListener(handleMessage);
+chrome.runtime.onMessage.addListener(handleMessage);

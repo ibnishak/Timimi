@@ -39,7 +39,7 @@ function checkTW() {
 
 // Loading settings from browser storage
 function getSettings() {
-  var getting = browser.storage.sync.get();
+  var getting = browser.storage.sync.get(["bpath", "bstrategy", "tohrecent", "tohlevel", "psint", "tint" ]);
   getting.then(onGot, syncError);
   function syncError(error) {
     console.log(`Error in getting values from browser storage: ${error}`);
@@ -108,7 +108,6 @@ if (checkTWResults.isTiddlyWiki && checkTWResults.isLocalFile) {
       messageId: idGenerator,
       content: content,
       backupPath: backupPath,
-      backup: timimisettings.backup,
       bpath: timimisettings.bpath,
       bstrategy: timimisettings.bstrategy,
       tohrecent: timimisettings.tohrecent,

@@ -18,6 +18,7 @@ func ensuredir(dir string) error {
 }
 
 func notifier(msg string, logger *log.Logger) {
+	// TODO: Post response before os exit
 	logger.Println("Error while saving data from browser.", msg)
 	beeep.Notify("Error!", "Error while saving data by Timimi Host. Please check error.log for details", "")
 }

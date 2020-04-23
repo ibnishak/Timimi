@@ -1,6 +1,6 @@
 function saveOptions(e) {
   e.preventDefault();
-  browser.storage.sync.set({
+  chrome.storage.sync.set({
     bpath: document.querySelector("#bpath").value,
     bstrategy: document.querySelector("#bstrategy").value,
     tohrecent: document.querySelector("#tohrecent").value,
@@ -9,16 +9,16 @@ function saveOptions(e) {
     tint: document.querySelector("#tint").value
   });
   
-  browser.notifications.create({
+  chrome.notifications.create({
     "type": "basic",
     "title": "Timimi preferences SAVED",
-    "iconUrl": browser.runtime.getURL("icons/index.svg"),
-    "message": "Please reload the TW5 browser tabs for the new preferences to take effect"
+    "iconUrl": chrome.runtime.getURL("icons/index.svg"),
+    "message": "Please reload the TW5 chrome tabs for the new preferences to take effect"
   });
 }
 
 function restoreOptions() {
-  var getting = browser.storage.sync.get();
+  var getting = chrome.storage.sync.get();
   getting.then(setCurrentChoice, onError);
 
   function setCurrentChoice(result) {
