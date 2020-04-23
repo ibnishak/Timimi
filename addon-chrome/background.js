@@ -11,7 +11,7 @@ function onError(error) {
   chrome.notifications.create({
     "type": "basic",
     "title": "Timimi save FAILED",
-    "iconUrl": chrome.runtime.getURL("icons/index.svg"),
+    "iconUrl": chrome.runtime.getURL("icons/icon16.png"),
     "message": "Error on contacting timimi host"
   });
 }

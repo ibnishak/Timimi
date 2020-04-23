@@ -12,7 +12,7 @@ function saveOptions(e) {
   chrome.notifications.create({
     "type": "basic",
     "title": "Timimi preferences SAVED",
-    "iconUrl": chrome.runtime.getURL("icons/index.svg"),
+    "iconUrl": chrome.runtime.getURL("icons/icon16.png"),
     "message": "Please reload the TW5 chrome tabs for the new preferences to take effect"
   });
 }
