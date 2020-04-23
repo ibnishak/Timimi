@@ -32,8 +32,9 @@ const firefoxtmpl = `{
   }`
 
 func main() {
-
+	cyan := color.New(color.FgCyan).SprintFunc() // Used when you want to mix regular output with colored output
 	color.Cyan("Hello There\nStarting Timimi Installation\n\n")
+
 	browser, err := findbrowser()
 	if err != nil {
 		fmt.Println("Unexpected error in choosing browser")
@@ -42,8 +43,6 @@ func main() {
 
 	platform := runtime.GOOS
 	execpath, manifestpath := findpaths(browser, platform)
-
-	cyan := color.New(color.FgCyan).SprintFunc() // Used when you want to mix regular output with colored output
 
 	var h host
 	h.Exec = execpath
