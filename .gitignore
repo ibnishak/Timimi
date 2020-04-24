@@ -6,3 +6,5 @@ scripts/Timimi-Second-Test-Success.txt
 scripts/demoLog/
 scripts/tw
 host-test/timimi
+host-test/encode
+host-test/decode
