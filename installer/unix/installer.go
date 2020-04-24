@@ -78,7 +78,7 @@ func main() {
 	if _, err := os.Stat(execpath); os.IsNotExist(err) {
 		err = os.Rename("timimi", execpath) // Rename is golang's way of moving file.
 		if err != nil {
-			fmt.Println("Move: ", err)
+			fmt.Println("Error in moving timimi executive: ", err)
 			return
 		}
 	}
