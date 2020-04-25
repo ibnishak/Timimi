@@ -20,3 +20,12 @@ function handleMessage(request, sender, sendResponse) {
 
 
 browser.runtime.onMessage.addListener(handleMessage);
+
+function handleInstalled(details) {
+  console.log(details.reason);
+  browser.tabs.create({
+    url: "https://ibnishak.github.io/Timimi/#Important%3A%20Post%20Update%2FInstallation%20instructions"
+  });
+}
+
+browser.runtime.onInstalled.addListener(handleInstalled);
