@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"html/template"
+	"io"
 	"os"
 	"path"
 	"runtime"
@@ -75,12 +76,10 @@ func main() {
 		return
 	}
 	fmt.Printf("Created host manifest: %s\n", cyan(manifestpath))
-	if _, err := os.Stat(execpath); os.IsNotExist(err) {
-		err = os.Rename("timimi", execpath) // Rename is golang's way of moving file.
-		if err != nil {
-			fmt.Println("Error in moving timimi executive: ", err)
-			return
-		}
+	err = copyfile("timimi", execpath)
+	if err != nil {
+		fmt.Println("Error in copying timimi executable to destination", err.Error())
+		return
 	}
 
 	fmt.Printf("Created host executable: %s\n", cyan(execpath))
@@ -145,4 +144,29 @@ func findpaths(browser, platform string) (string, string) {
 	}
 	manifestpath = path.Join(os.Getenv("HOME"), manifestpath, "timimi.json")
 	return execpath, manifestpath
+}
+
+func copyfile(src, dst string) error {
+	var err error
+	var srcfd *os.File
+	var dstfd *os.File
+	var srcinfo os.FileInfo
+
+	if srcfd, err = os.Open(src); err != nil {
+		return err
+	}
+	defer srcfd.Close()
+
+	if dstfd, err = os.Create(dst); err != nil {
+		return err
+	}
+	defer dstfd.Close()
+
+	if _, err = io.Copy(dstfd, srcfd); err != nil {
+		return err
+	}
+	if srcinfo, err = os.Stat(src); err != nil {
+		return err
+	}
+	return os.Chmod(dst, srcinfo.Mode())
 }

@@ -1,0 +1,13 @@
+{
+    "path": "/home/richie/Repos/Timimi/host-test/tests/test.html",
+    "messageId": 8,
+    "content": "Hello there",
+    "backupPath": "",
+    "bpath": "",
+    "bstrategy": "toh",
+    "tohrecent": "5",
+    "tohlevel": "3",
+    "psint": "4",
+    "fint": "6",
+    "tbackup": "false"
+  }

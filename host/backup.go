@@ -52,3 +52,9 @@ func buildfname(path, uniq string) string {
 	}
 	return fmt.Sprintf("%s-%s%s", title, uniq, ext)
 }
+
+func fifo(fifoint string, mid int, path string) (string, bool) {
+	fint, _ := strconv.Atoi(fifoint)
+	b := mid % fint
+	return buildfname(path, fmt.Sprintf("Backup-%d", b)), true
+}

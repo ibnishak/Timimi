@@ -23,21 +23,19 @@
 ### Announcement
 
 
-Owing to less than optimal conditions in personal life, porting Timimi 2.0 to chrome and other browsers are indefinitely postponed. Timimi 1.0 will still work in Windows and Linux in Firefox as well as chrome, while Timimi 2.0 will work in Windows, Linux and Mac but only in Firefox browser. So if you are a Firefox user, you are strongly urged to update to lastest Timimi release.
+Timimi addon for chrome is at testing stage.
 
-Sincerely,
-Riz
-
-
-* [Updates](#updates)
-* [Intro](#intro)
-* [Supported browsers](#supported-browsers)
-* [Supported OS](#supported-os)
-* [Installation](#installation)
-* [To do](#to-do)
-* [Pros](#pros)
-* [Cons](#cons)
-* [Credits](#credits)
+- [Announcement](#announcement)
+- [Updates](#updates)
+- [Intro](#intro)
+- [Supported browsers](#supported-browsers)
+- [Supported OS](#supported-os)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Pros](#pros)
+- [Cons](#cons)
+- [Credits](#credits)
+	- [Logo credits](#logo-credits)
 
 
 ### Updates
@@ -72,15 +70,7 @@ Please see: https://ibnishak.github.io/Timimi/
 
 ### Usage
 
-
 Please see: https://ibnishak.github.io/Timimi/
-
-### To do
-
-1. DONE Relative paths for backups
-2. DONE Rewrite webextension host in golang
-3. DONE Launch simple scripts
-
 
 ### Pros
 

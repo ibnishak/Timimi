@@ -17,9 +17,7 @@ func ensuredir(dir string) error {
 	return nil
 }
 
-func notifier(msg string, logger *log.Logger) {
-	// TODO: Post response before os exit
-	logger.Println("Error while saving data from browser.", msg)
+func notifier() {
 	beeep.Notify("Error!", "Error while saving data by Timimi Host. Please check error.log for details", "")
 }
 
@@ -44,4 +42,14 @@ func unmarshdata(msg []byte) (indata, error) {
 		return indata{}, err
 	}
 	return data, nil
+}
+
+func logerr(a string, b string) {
+	f, err := os.OpenFile("timimi.log", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+	if err != nil {
+		log.Println(err)
+	}
+	defer f.Close()
+	logger := log.New(f, "Timimi", log.LstdFlags)
+	logger.Println(a, b)
 }

@@ -39,7 +39,7 @@ function checkTW() {
 
 // Loading settings from chrome storage
 function getSettings() {
-  chrome.storage.sync.get(["bpath", "bstrategy", "tohrecent", "tohlevel", "psint", "tint" ], function(result) {
+  chrome.storage.sync.get(["bpath", "bstrategy", "tohrecent", "tohlevel", "psint", "tint", "fint" ], function(result) {
     timimisettings = result;
   });
 }
@@ -103,6 +103,7 @@ if (checkTWResults.isTiddlyWiki && checkTWResults.isLocalFile) {
       tohrecent: timimisettings.tohrecent,
       tohlevel: timimisettings.tohlevel,
       psint: timimisettings.psint,
+      fint: timimisettings.fint,
       tbackup: tbackup
     }, handleSent);
     

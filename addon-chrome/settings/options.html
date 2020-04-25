@@ -23,6 +23,7 @@
         <option value="toh">Tower of Hanoi</option>
         <option value="psave">Every nth save</option>
         <option value="timed">Every nth min</option>
+        <option value="fifo">First In First Out</option>
       </select>
     </div>
     <div id="toh" class="bopt">
@@ -47,6 +48,13 @@
         <legend>Every nth min</legend>
         <label class="label" for="tint">Number of minutes after last save</label>
         <input class="input" type="text" id="tint" />
+      </fieldset>
+    </div>
+    <div id="fifo" class="bopt">
+      <fieldset style="border: 1px solid rgba(81, 211, 92, 0.7);">
+        <legend>First In First Out</legend>
+        <label class="label" for="tint">Number of backups to keep</label>
+        <input class="input" type="text" id="fint" />
       </fieldset>
     </div>
     <button type="submit">

@@ -16,10 +16,11 @@ function onError(error) {
   });
 }
 
-function handleMessage(request) {
+function handleMessage(request, sender, sendResponse) {
   console.log("Timimi: Sending native message");
+  sendResponse({message: "Timimi: Data received in background.js"}); // Necessary to keep Port closed erro away
   chrome.runtime.sendNativeMessage("timimi", request, onResponse);
-}
 
+}
 
 chrome.runtime.onMessage.addListener(handleMessage);

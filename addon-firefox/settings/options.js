@@ -6,7 +6,8 @@ function saveOptions(e) {
     tohrecent: document.querySelector("#tohrecent").value,
     tohlevel: document.querySelector("#tohlevel").value,
     psint: document.querySelector("#psint").value,
-    tint: document.querySelector("#tint").value
+    tint: document.querySelector("#tint").value,
+    fint: document.querySelector("#fint").value
   });
   
   browser.notifications.create({
@@ -28,6 +29,7 @@ function restoreOptions() {
     document.querySelector("#tohlevel").value = result.tohlevel || "8";
     document.querySelector("#psint").value = result.psint || "10";
     document.querySelector("#tint").value = result.tint || "4";
+    document.querySelector("#fint").value = result.fint || "5";
   }
 
   function onError(error) {
@@ -79,5 +81,13 @@ setInputFilter(document.getElementById("tohrecent"), function(value) {
 });
 
 setInputFilter(document.getElementById("psint"), function(value) {
+  return /^-?\d*$/.test(value);
+});
+
+setInputFilter(document.getElementById("tint"), function(value) {
+  return /^-?\d*$/.test(value);
+});
+
+setInputFilter(document.getElementById("fint"), function(value) {
   return /^-?\d*$/.test(value);
 });
