@@ -24,3 +24,15 @@ function handleMessage(request, sender, sendResponse) {
 }
 
 chrome.runtime.onMessage.addListener(handleMessage);
+
+chrome.runtime.onInstalled.addListener(function() {
+  chrome.tabs.create({
+    url: "https://ibnishak.github.io/Timimi/#Important%3A%20Post%20Update%2FInstallation%20instructions"
+  });
+});
+
+chrome.browserAction.onClicked.addListener(function() {
+  chrome.tabs.create({
+    url: "https://ibnishak.github.io/Timimi/"
+  });
+});
