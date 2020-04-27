@@ -20,12 +20,8 @@
 
 <br/><br/><br/>
 
-### Announcement
 
 
-Timimi addon for chrome is at testing stage.
-
-- [Announcement](#announcement)
 - [Updates](#updates)
 - [Intro](#intro)
 - [Supported browsers](#supported-browsers)
@@ -40,28 +36,31 @@ Timimi addon for chrome is at testing stage.
 
 ### Updates
 
+April 27, 2020: Timimi now supports chrome, chromium, opera in addition to firefox
 July 20, 2019: Thanks to the efforts by [@YakovL](https://github.com/YakovL), timimi has basic support for saving Tiddlywiki Classic too!
 
 ### Intro
 
-Timimi is a webextension using native messaging API that allows it to save standalone tiddlywiki files.
-
-Tiddlyfox addon for firefox browser stopped working for post 57 versions of firefox when mozilla switched over to sandbox model, restricting access to the file system. However webextension addons provide APIs which interface with filesystem. This is an addon using native messaging, essentially handing over the contents to a webextension host which does the actual saving. For the end user it means a couple of extra steps to install the addon but once installed, you can save the standalone TW from anywhere in your harddrive without any more interactions, like the original Tiddlyfox addon.
-
-
+Timimi is a browser extension that allows user to save standalone tiddlywiki - both TW5 and TW-Classic. In addition, Timimi also provides ability to backup the tiddlywiki files to a path of user's choice. 
 
 ### Supported browsers
 
 
 * Firefox >57
+* Chrome > 30
+* Chromium - Corresponding to Chrome
+* Opera >33
+
 
 
 ### Supported OS
 
 * Debian based systems - Debian, Ubuntu, Elementary, Mint etc
 * Arch based systems - Arch Linux, Antergos, Manjaro etc
+* Mac OSX
 * Windows 7 and later.
 
+PS: All OSes are 64bit systems. If anyone needs support for 32 bit systems, you will have to compile the host in the target system, Open an issue for assistance.
 
 
 ### Installation
@@ -74,16 +73,13 @@ Please see: https://ibnishak.github.io/Timimi/
 
 ### Pros
 
-* Webextension host can be expanded for different purposes depending on personal preferences. For eg:
-  * Saving time stamped backups instead of overwrting.
-  * Monitor changes to a tiddler and enter it to a local relational database like sqlite.
-
-* 3 different backup strategies
-* No need to run a server, does not require continued user interactions
+* Standalone Tiddlywikis can be saved anywhere in the filesystem where you have permission to save files. 
+* User can install and forget. No need to run a server, does not require continued user interactions
+* 4 different backup strategies
 
 ### Cons
 
-1. Cannot be used in android
+Cannot be used in android
 
 ### Credits
 
