@@ -36,12 +36,12 @@
 
 ### Updates
 
-April 27, 2020: Timimi now supports chrome, chromium, opera in addition to firefox
-July 20, 2019: Thanks to the efforts by [@YakovL](https://github.com/YakovL), timimi has basic support for saving Tiddlywiki Classic too!
+* April 27, 2020: Timimi now supports chrome, chromium, opera in addition to firefox
+* July 20, 2019: Thanks to the efforts by [@YakovL](https://github.com/YakovL), timimi has basic support for saving Tiddlywiki Classic too!
 
 ### Intro
 
-Timimi is a browser extension that allows user to save standalone tiddlywiki - both TW5 and TW-Classic. In addition, Timimi also provides ability to backup the tiddlywiki files to a path of user's choice. 
+Timimi is a browser extension that allows user to save standalone tiddlywiki - both TW5 and TW-Classic. In addition, Timimi also provides ability to backup the tiddlywiki files to a path of user's choice.
 
 ### Supported browsers
 
@@ -73,7 +73,7 @@ Please see: https://ibnishak.github.io/Timimi/
 
 ### Pros
 
-* Standalone Tiddlywikis can be saved anywhere in the filesystem where you have permission to save files. 
+* Standalone Tiddlywikis can be saved anywhere in the filesystem where you have permission to save files.
 * User can install and forget. No need to run a server, does not require continued user interactions
 * 4 different backup strategies
 
