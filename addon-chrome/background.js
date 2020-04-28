@@ -32,7 +32,5 @@ chrome.runtime.onInstalled.addListener(function() {
 });
 
 chrome.browserAction.onClicked.addListener(function() {
-  chrome.tabs.create({
-    url: "https://ibnishak.github.io/Timimi/"
-  });
+  chrome.runtime.openOptionsPage();
 });

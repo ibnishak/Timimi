@@ -19,7 +19,7 @@ function saveOptions(e) {
 }
 
 function restoreOptions() {
-  var getting = browser.storage.sync.get();
+  var getting =  browser.storage.sync.get(["bpath", "bstrategy", "tohrecent", "tohlevel", "psint", "tint", "fint" ]);
   getting.then(setCurrentChoice, onError);
 
   function setCurrentChoice(result) {

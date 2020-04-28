@@ -19,10 +19,7 @@ function saveOptions(e) {
 }
 
 function restoreOptions() {
-  var getting = chrome.storage.sync.get();
-  getting.then(setCurrentChoice, onError);
-
-  function setCurrentChoice(result) {
+  chrome.storage.sync.get(["bpath", "bstrategy", "tohrecent", "tohlevel", "psint", "tint", "fint" ], function(result) {
     document.querySelector("#bpath").value = result.bpath || "";
     document.querySelector("#bstrategy").value = result.bstrategy || "none";
     document.querySelector("#tohrecent").value = result.tohrecent || "5";
@@ -30,9 +27,8 @@ function restoreOptions() {
     document.querySelector("#psint").value = result.psint || "10";
     document.querySelector("#tint").value = result.tint || "4";
     document.querySelector("#fint").value = result.fint || "5";
-  }
-
-  function onError(error) {
+  })
+  if (chrome.runtime.lastError) {
     console.log(`Error: ${error}`);
   }
 }

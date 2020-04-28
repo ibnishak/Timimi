@@ -31,9 +31,7 @@ function handleInstalled(details) {
 browser.runtime.onInstalled.addListener(handleInstalled);
 
 function openPage() {
-  browser.tabs.create({
-    url: "https://ibnishak.github.io/Timimi"
-  });
+  browser.runtime.openOptionsPage();
 }
 
 browser.browserAction.onClicked.addListener(openPage);
