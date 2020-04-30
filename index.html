@@ -229,7 +229,11 @@ Error message and password prompt
 
 <li>$:/state/toc/TableOfContents-Backing up using timimi-1705869924</li>
 
+<li>$:/state/toc/TableOfContents-Installing Timimi-1705869924</li>
+
 <li>$:/state/toc/TableOfContents-What is timimi-1705869924</li>
+
+<li>$:/state/toc/TableOfContents/Installing Timimi-Edge-1705869924</li>
 
 <li>$:/status/RequireReloadDueToPluginChange</li>
 
@@ -238,6 +242,8 @@ Error message and password prompt
 <li>$:/temp/advancedsearch</li>
 
 <li>$:/temp/info-plugin</li>
+
+<li>$:/temp/NewTagName</li>
 
 <li>$:/temp/search</li>
 
@@ -255,11 +261,15 @@ Error message and password prompt
 
 <li>Backing up using timimi</li>
 
+<li>Brave</li>
+
 <li>Capturing stdin to files Unix</li>
 
 <li>Capturing stdout to tiddlers Unix</li>
 
 <li>Capturing title and text from stdout Unix</li>
+
+<li>Chrome</li>
 
 <li>Chrome addon</li>
 
@@ -288,6 +298,8 @@ Error message and password prompt
 <li>Examples: Linux/Mac</li>
 
 <li>Examples: Windows</li>
+
+<li>Firefox</li>
 
 <li>firefox-addonpage</li>
 
@@ -323,9 +335,11 @@ Error message and password prompt
 
 <li>Opening webpages using a bat script</li>
 
-<li>opera</li>
+<li>Opera</li>
 
 <li>releasepage</li>
+
+<li>Resolution of &quot;developer cannot be verified&quot; issue in Mac OS Catalina</li>
 
 <li>Roadmap</li>
 
@@ -366,6 +380,8 @@ Error message and password prompt
 <li>Tower of Hanoi</li>
 
 <li>tw.svg</li>
+
+<li>Vivaldi</li>
 
 <li>What is new?</li>
 
@@ -10678,13 +10694,19 @@ src={{ActionCreateTiddlerWidget Example}}/&gt;</pre>
 <div created="20200426220658943" modified="20200426220658944" title="$:/state/toc/TableOfContents-Backing up using timimi-1705869924">
 <pre>open</pre>
 </div>
+<div created="20200430115509547" modified="20200430115509547" title="$:/state/toc/TableOfContents-Installing Timimi-1705869924">
+<pre>open</pre>
+</div>
 <div created="20200426220146889" modified="20200426220146889" title="$:/state/toc/TableOfContents-What is timimi-1705869924">
+<pre>open</pre>
+</div>
+<div created="20200430115511533" modified="20200430115511533" title="$:/state/toc/TableOfContents/Installing Timimi-Edge-1705869924">
 <pre>open</pre>
 </div>
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
-<div list="TableOfContents [[What is timimi]]" title="$:/StoryList">
+<div created="20200430123012549" list="[[Supported OS and Browsers]]" modified="20200430123012549" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20200427094840676" modified="20200427150600915" title="$:/temp/advancedsearch">
@@ -10748,7 +10770,10 @@ src={{ActionCreateTiddlerWidget Example}}/&gt;</pre>
     }
 }</pre>
 </div>
-<div created="20200426215953124" modified="20200427150910281" title="$:/temp/search">
+<div created="20200430112246227" modified="20200430113232487" title="$:/temp/NewTagName">
+<pre></pre>
+</div>
+<div created="20200426215953124" modified="20200430122522423" title="$:/temp/search">
 <pre></pre>
 </div>
 <div created="20190408064117156" modified="20190425150356180" title="$:/theme" type="text/vnd.tiddlywiki">
@@ -10915,6 +10940,9 @@ See [[Security and Privacy]]
 
 &lt;/$list&gt;</pre>
 </div>
+<div created="20200430122353600" modified="20200430122510502" tags="[[Installing Timimi]]" title="Brave">
+<pre>SInce Brave browser supports all chrome extensions, please see instructions for [[Chrome]] and follow the same.</pre>
+</div>
 <div bag="default" caption="Capturing stdin to files" created="20181222042022364" modified="20181222042217703" revision="0" sortorder="3" tags="[[Examples: Linux/Mac]]" title="Capturing stdin to files Unix">
 <pre></pre>
 </div>
@@ -10924,12 +10952,27 @@ See [[Security and Privacy]]
 <div bag="default" caption="Capturing title and text from stdout" created="20181222075823578" modified="20181222075935077" revision="0" sortorder="5" tags="[[Examples: Linux/Mac]]" title="Capturing title and text from stdout Unix">
 <pre></pre>
 </div>
+<div created="20200430112334122" modified="20200430114327487" tags="[[Installing Timimi]]" title="Chrome">
+<pre>!! Google Chrome
+!!! Chrome in Linux
+{{Chrome addon}}
+{{linux-install}}
+
+!!! Chrome in Mac
+{{Chrome addon}}
+{{mac-install}}
+
+!!! Chrome in Windows
+{{Chrome addon}}
+* Download and run ''timimi-2-1-1-Windows-Chrome-Chromium-Opera.exe'' from {{releasepage}}
+</pre>
+</div>
 <div created="20200426211923076" modified="20200427102700604" tags="" title="Chrome addon">
 <pre>* Install timimi addon from [ext[Chrome Web Store|https://chrome.google.com/webstore/detail/timimi/mnggafnmmhdoplbffagjihajeeikgbcg]]
 * In your chrome browser, open More Tools &gt; Extensions &gt; Timimi &gt; Details
 * Ensure that ''Allow access to file URLs'' is checked.</pre>
 </div>
-<div created="20200426213716880" modified="20200426214159978" tags="" title="Chromium">
+<div created="20200426213716880" modified="20200430112438740" tags="[[Installing Timimi]] Browser" title="Chromium">
 <pre>!!! Chromium in Linux
 {{Chrome addon}}
 {{linux-install}}
@@ -10999,8 +11042,10 @@ sc=&quot;tr -dc A-Za-z0-9 &lt;/dev/urandom | head -c 1024&quot;
 
 * Press the button. Check your home folder for a file with the name &quot;Hello.txt&quot;</pre>
 </div>
-<div created="20200427145012320" modified="20200427150233461" tags="" title="Edge">
+<div created="20200427145012320" modified="20200430112726694" tags="Browser [[Installing Timimi]]" title="Edge">
 <pre>!!! Edge in Windows
+
+Credits to [ext[Mohammad|https://github.com/kookma]]
 
 {{edge-allow-chrome}}
 * Install timimi addon from [ext[Chrome Web Store|https://chrome.google.com/webstore/detail/timimi/mnggafnmmhdoplbffagjihajeeikgbcg]]
@@ -11008,7 +11053,7 @@ sc=&quot;tr -dc A-Za-z0-9 &lt;/dev/urandom | head -c 1024&quot;
 * Ensure that ''Allow access to file URLs'' is checked.
 {{host-chrome-windows}}</pre>
 </div>
-<div created="20200427150058485" modified="20200427150115876" tags="Edge" title="edge-allow-chrome">
+<div created="20200427150058485" modified="20200430115523357" title="edge-allow-chrome">
 <pre>* Open `Menu &gt; Extensions`
 * Enable the ''Allow extensions from other stores'' switch in the lower left-hand corner of the Extensions page that appears. </pre>
 </div>
@@ -11040,6 +11085,21 @@ sc=&quot;tr -dc A-Za-z0-9 &lt;/dev/urandom | head -c 1024&quot;
 <pre>&lt;div class=&quot;tc-table-of-contents&quot;&gt;
 &lt;&lt;toc &quot;Examples: Windows&quot; &quot;sort[sortorder]&quot;&gt;&gt;
 &lt;/div&gt;
+</pre>
+</div>
+<div created="20200430112214276" modified="20200430112248552" tags="[[Installing Timimi]] Browser" title="Firefox">
+<pre>!!! Firefox in Linux
+* Install Timimi addon from {{firefox-addonpage}}
+{{linux-install}}
+
+!!! Firefox in Mac
+* Install Timimi addon from {{firefox-addonpage}}
+{{mac-install}}
+
+!!! Firefox in Windows
+
+* Install Timimi addon from {{firefox-addonpage}}
+* Download and run ''timimi-2-1-1-Windows-Firefox.exe'' from {{releasepage}}
 </pre>
 </div>
 <div created="20181222170703001" modified="20200426211714405" tags="" title="firefox-addonpage">
@@ -11109,48 +11169,8 @@ Timimi receives the changed tiddlywiki and hands over the contents to a webexten
 
 For further instructions on saving and backup, please see the  [[TableOfContents]]</pre>
 </div>
-<div bag="default" created="20181220085504943" modified="20200427150455076" revision="0" tags="TableOfContents" title="Installing Timimi">
-<pre>!! Firefox
-
-!!! Firefox in Linux
-* Install Timimi addon from {{firefox-addonpage}}
-{{linux-install}}
-
-!!! Firefox in Mac
-* Install Timimi addon from {{firefox-addonpage}}
-{{mac-install}}
-
-!!! Firefox in Windows
-
-* Install Timimi addon from {{firefox-addonpage}}
-* Download and run ''timimi-2-1-1-Windows-Firefox.exe'' from {{releasepage}}
-
-
-!! Google Chrome
-!!! Chrome in Linux
-{{Chrome addon}}
-{{linux-install}}
-
-!!! Chrome in Mac
-{{Chrome addon}}
-* Download and unzip ''timimi-2-1-1-Mac.zip'' from {{releasepage}}
-* From terminal, run `./installer` and choose appropriate browser when asked.
-
-!!! Chrome in Windows
-{{Chrome addon}}
-* Download and run ''timimi-2-1-1-Windows-Chrome-Chromium-Opera.exe'' from {{releasepage}}
-
-
-!! Chromium
-{{Chromium}}
-
-!! Opera
-{{opera}}
-
-!! Edge
-Credits to [ext[Mohammad|https://github.com/kookma]]
-
-{{Edge}}</pre>
+<div bag="default" created="20181220085504943" modified="20200430113003417" revision="0" tags="TableOfContents" title="Installing Timimi">
+<pre>&lt;&lt;list-links &quot;[tag&lt;currentTiddler&gt;sort[]]&quot;&gt;&gt;</pre>
 </div>
 <div bag="default" created="20181220090147680" modified="20200423195219789" revision="0" title="Launching scripts using timimi">
 <pre>&lt;span class=&quot;important&quot;&gt;Important: &lt;/span&gt; Always create a backups of your important works before trying a new plugin
@@ -11189,13 +11209,17 @@ See [[Security and Privacy]]
 <div title="licence.svg" type="image/svg+xml">
 <pre>&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; xmlns:xlink=&quot;http://www.w3.org/1999/xlink&quot; width=&quot;108&quot; height=&quot;20&quot;&gt;&lt;g shape-rendering=&quot;crispEdges&quot;&gt;&lt;path fill=&quot;#555&quot; d=&quot;M0 0h51v20H0z&quot;/&gt;&lt;path fill=&quot;#e05d44&quot; d=&quot;M51 0h57v20H51z&quot;/&gt;&lt;/g&gt;&lt;g fill=&quot;#fff&quot; text-anchor=&quot;middle&quot; font-family=&quot;DejaVu Sans,Verdana,Geneva,sans-serif&quot; font-size=&quot;110&quot;&gt; &lt;text x=&quot;265&quot; y=&quot;140&quot; transform=&quot;scale(.1)&quot; textLength=&quot;410&quot;&gt;Licence&lt;/text&gt;&lt;text x=&quot;785&quot; y=&quot;140&quot; transform=&quot;scale(.1)&quot; textLength=&quot;470&quot;&gt;AGPL v3&lt;/text&gt;&lt;/g&gt; &lt;/svg&gt;</pre>
 </div>
-<div created="20200426212303072" modified="20200426212405143" tags="" title="linux-install">
-<pre>* Download and unzip ''timimi-2-1-1-Linux.zip'' from {{releasepage}}
-* From terminal, run `./installer` and choose appropriate browser when asked.</pre>
+<div created="20200426212303072" modified="20200430114129644" tags="" title="linux-install">
+<pre>* Download ''timimi-2-1-1-Linux'' from {{releasepage}}
+* Run it by double clicking [If your OS asks for confirmation, choose &quot;Run&quot;]. 
+* Select the appropriate browser when asked.</pre>
 </div>
-<div created="20200426213923800" modified="20200426213931895" tags="" title="mac-install">
-<pre>* Download and unzip ''timimi-2-1-1-Mac.zip'' from {{releasepage}}
-* From terminal, run `./installer` and choose appropriate browser when asked.</pre>
+<div created="20200426213923800" modified="20200430120324075" tags="" title="mac-install">
+<pre>* Download ''timimi-2-1-1-Mac'' from {{releasepage}}
+* Run it by double clicking [If your OS asks for confirmation, choose &quot;Run&quot;]. 
+* Select the appropriate browser when asked.
+
+&lt;span class=&quot;important&quot;&gt;Important&lt;/span&gt;: Mac OS Catalina users: Please see [[Resolution of &quot;developer cannot be verified&quot; issue in Mac OS Catalina]]</pre>
 </div>
 <div bag="default" created="20181222082358168" modified="20181222082758021" revision="0" tags="[[Simple Scripts Unix]]" title="Opening multiple programs">
 <pre>&lt;$macrocall $name=scr
@@ -11232,13 +11256,18 @@ start &quot;&quot; http://www.huffingtonpost.com
 ```
 * Save the tiddler and press the button</pre>
 </div>
-<div created="20200426214556130" modified="20200426214858190" tags="" title="opera">
+<div created="20200426214556130" modified="20200430112552474" tags="[[Installing Timimi]] Browser" title="Opera">
 <pre>!!! Opera in Linux, Mac and Windows
 * Install the [ext[chrome extensions add-on|https://addons.opera.com/en/extensions/details/install-chrome-extensions/]] which enables opera to install chrome add-ons.
-* Now follow the instructions for chrome in your specific OS</pre>
+* Now follow the instructions for [[Chrome]] in your specific OS</pre>
 </div>
 <div created="20181222171109497" modified="20200426211240417" tags="" title="releasepage">
 <pre>[ext[Github|https://github.com/ibnishak/Timimi/releases]]</pre>
+</div>
+<div created="20200430121450227" modified="20200430121732504" title="Resolution of &quot;developer cannot be verified&quot; issue in Mac OS Catalina" type="`">
+<pre>* Open folder `Library/Application Support/timimi`
+* Control-click the `timimi` executable, then choose Open from the shortcut menu.
+* Click Open.</pre>
 </div>
 <div bag="default" created="20181220090248390" modified="20200427094615592" revision="0" tags="TableOfContents" title="Roadmap">
 <pre>* Once Microsoft transitions Edge to chromium based browser, port to Edge.</pre>
@@ -11391,7 +11420,7 @@ In Unix-like operating systems, such as Linux, macOS X, and BSD, stdout is defin
 
 In the terminal, standard output defaults to the user's screen.</pre>
 </div>
-<div bag="default" created="20181220091848744" modified="20200427144835905" revision="0" tags="[[What is timimi]]" title="Supported OS and Browsers">
+<div bag="default" created="20181220091848744" modified="20200430123127950" revision="0" tags="[[What is timimi]]" title="Supported OS and Browsers">
 <pre>!!! Supported OS
 
 * Debian based systems - Debian, Ubuntu, Elementary, Mint etc
@@ -11404,12 +11433,11 @@ In the terminal, standard output defaults to the user's screen.</pre>
 |          | GNU+Linux       | Mac             | Windows         |
 | Firefox  | @@color:#009688;DONE@@            | @@color:#009688;DONE@@ | @@color:#009688;DONE@@  |
 | Chrome   | @@color:#009688;DONE@@  | @@color:#009688;DONE@@           | @@color:#009688;DONE@@             |
-| Chromium | @@color:#009688;DONE@@  | TESTING         |   TESTING              |
-| Opera    | @@color:#009688;DONE@@         | TESTING         | TESTING         |
+| Chromium | @@color:#009688;DONE@@  |  @@color:#009688;DONE@@          |    @@color:#009688;DONE@@               |
+| Opera    | @@color:#009688;DONE@@         |  @@color:#009688;DONE@@          |  @@color:#009688;DONE@@          |
 | Edge     |          |          | @@color:#009688;DONE@@         |
-
-
-
+| Brave |   TESTING | TESTING    |  @@color:#009688;DONE@@ |
+| Vivaldi | TESTING | TESTING |  @@color:#009688;DONE@@  |
 </pre>
 </div>
 <div bag="default" caption="{{$:/language/SideBar/Contents/Caption}}" created="20140809114010378" list="[[What is timimi]] [[What is new?]] [[Why use timimi?]] [[When should you not use timimi?]] [[Installing Timimi]] [[Backing up using timimi]] [[Launching scripts using timimi]] [[Security and Privacy]] Roadmap [[Acknowledments and Credits]]" list-after="$:/core/ui/SideBar/Open" modified="20200427150855733" revision="0" title="TableOfContents" type="text/vnd.tiddlywiki">
@@ -11453,6 +11481,11 @@ If there is a conflict in numbers, the higher level will be preferred. For eg: l
 </div>
 <div title="tw.svg" type="image/svg+xml">
 <pre>&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; xmlns:xlink=&quot;http://www.w3.org/1999/xlink&quot; width=&quot;124&quot; height=&quot;20&quot;&gt;&lt;linearGradient id=&quot;b&quot; x2=&quot;0&quot; y2=&quot;100%&quot;&gt;&lt;stop offset=&quot;0&quot; stop-color=&quot;#bbb&quot; stop-opacity=&quot;.1&quot;/&gt;&lt;stop offset=&quot;1&quot; stop-opacity=&quot;.1&quot;/&gt;&lt;/linearGradient&gt;&lt;clipPath id=&quot;a&quot;&gt;&lt;rect width=&quot;124&quot; height=&quot;20&quot; rx=&quot;3&quot; fill=&quot;#fff&quot;/&gt;&lt;/clipPath&gt;&lt;g clip-path=&quot;url(#a)&quot;&gt;&lt;path fill=&quot;#555&quot; d=&quot;M0 0h59v20H0z&quot;/&gt;&lt;path fill=&quot;#00695c&quot; d=&quot;M59 0h65v20H59z&quot;/&gt;&lt;path fill=&quot;url(#b)&quot; d=&quot;M0 0h124v20H0z&quot;/&gt;&lt;/g&gt;&lt;g fill=&quot;#fff&quot; text-anchor=&quot;middle&quot; font-family=&quot;DejaVu Sans,Verdana,Geneva,sans-serif&quot; font-size=&quot;110&quot;&gt; &lt;text x=&quot;305&quot; y=&quot;150&quot; fill=&quot;#010101&quot; fill-opacity=&quot;.3&quot; transform=&quot;scale(.1)&quot; textLength=&quot;490&quot;&gt;Made for&lt;/text&gt;&lt;text x=&quot;305&quot; y=&quot;140&quot; transform=&quot;scale(.1)&quot; textLength=&quot;490&quot;&gt;Made for&lt;/text&gt;&lt;text x=&quot;905&quot; y=&quot;150&quot; fill=&quot;#010101&quot; fill-opacity=&quot;.3&quot; transform=&quot;scale(.1)&quot; textLength=&quot;550&quot;&gt;Tiddlywiki&lt;/text&gt;&lt;text x=&quot;905&quot; y=&quot;140&quot; transform=&quot;scale(.1)&quot; textLength=&quot;550&quot;&gt;Tiddlywiki&lt;/text&gt;&lt;/g&gt; &lt;/svg&gt;</pre>
+</div>
+<div created="20200430121939348" modified="20200430122002917" tags="[[Installing Timimi]]" title="Vivaldi">
+<pre>Because Vivaldi is built using Chromium, you can install extensions freely from the Chrome Web Store.
+
+So please see instructions for [[Chrome]]</pre>
 </div>
 <div bag="default" created="20181220085240957" modified="20200426152626920" revision="0" tags="TableOfContents" title="What is new?">
 <pre>!!! Version 2.1.1
