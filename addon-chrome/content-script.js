@@ -3,11 +3,11 @@ var timimisettings = {};
 var tlast = new Date();
 
 // If and only if the local file is TW-Classic(old) file, inject the patch enabling it to be saved with tiddlyfox-derived savers
-function injectExtensionScript(path) {
-  var script = document.createElement('script');
-  script.src = chrome.extension.getURL(path); 
-  (document.head || document.documentElement).appendChild(script);
-  script.onload = script.remove;
+function injectScript(text) {
+  const scriptElement = document.createElement("script");
+  scriptElement.innerHTML = text;
+  document.head.appendChild(scriptElement);
+  scriptElement.remove();
 }
 
 // Checking if the active tab is a local tiddlywiki file
@@ -52,7 +52,46 @@ var checkTWResults = checkTW();
 // If it is a TW-Classic, then do @YakovL magic to save it
 if (checkTWResults.isTiddlyWikiClassic && checkTWResults.isLocalFile) {
   getSettings();
-  injectExtensionScript('patch-classic-io.js');
+  injectScript(`
+	window.mozillaLoadFile = function(path) {
+	  try {
+	    // Just read the file synchronously
+	    var xhReq = new XMLHttpRequest();
+	    xhReq.open("GET", "file:///" + encodeURIComponent(path), false);
+	    xhReq.send(null);
+	    return xhReq.responseText;
+	  } catch(ex) {
+	    return false;
+	  }
+	};
+
+	window.mozillaSaveFile = function(path, content) {
+	  var messageBox = document.getElementById("tiddlyfox-message-box");
+	  if(!messageBox) return false;
+
+	  // Create the message element and put it into the message box
+	  var message = document.createElement("div");
+	  message.setAttribute("data-tiddlyfox-path", path);
+	  message.setAttribute("data-tiddlyfox-content", content);
+	  messageBox.appendChild(message);
+
+	  // Create and dispatch the custom event to the extension
+	  var event = document.createEvent("Events");
+	  event.initEvent("tiddlyfox-save-file", true, false);
+	  message.dispatchEvent(event);
+
+	  return true;
+	};
+
+	// expose the supported I/O events
+	window.eventBasedIO = {
+	  save: {
+	    name: 'tiddlyfox-save-file'
+	  },
+	  saved: {
+	    name: 'tiddlyfox-have-saved-file'
+	  }
+	};`);
 }
 
 // If it is a TW-5, then do extract settings and save it.
