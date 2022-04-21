@@ -100,7 +100,7 @@ func createDirIfNotExist(dir string) {
 func findbrowser() (string, error) {
 	prompt := promptui.Select{
 		Label: "Select browser",
-		Items: []string{"firefox", "google-chrome", "chromium"},
+		Items: []string{"firefox", "firefox-snap", "google-chrome", "chromium"},
 	}
 
 	_, result, err := prompt.Run()
@@ -118,7 +118,11 @@ func findpaths(browser, platform string) (string, string) {
 	case "darwin":
 		execpath = path.Join(os.Getenv("HOME"), "Library/Application Support/timimi/timimi")
 	case "linux":
-		execpath = path.Join(os.Getenv("HOME"), ".local/share/timimi/timimi")
+		if browser == "firefox-snap" {
+			execpath = path.Join(os.Getenv("HOME"), "snap/firefox/common/.mozilla/timimi/timimi")
+		} else {
+			execpath = path.Join(os.Getenv("HOME"), ".local/share/timimi/timimi")
+		}
 	default:
 		execpath = ""
 		fmt.Println("Error: Installer only intended for linux and mac. Exiting")
@@ -136,6 +140,8 @@ func findpaths(browser, platform string) (string, string) {
 	case "linuxgoogle-chrome":
 		manifestpath = ".config/google-chrome/NativeMessagingHosts"
 	case "linuxfirefox":
+		manifestpath = ".mozilla/native-messaging-hosts"
+	case "linuxfirefox-snap":
 		manifestpath = ".mozilla/native-messaging-hosts"
 	default:
 		manifestpath = ""
