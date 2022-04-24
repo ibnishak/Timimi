@@ -142,7 +142,7 @@ func findpaths(browser, platform string) (string, string) {
 	case "linuxfirefox":
 		manifestpath = ".mozilla/native-messaging-hosts"
 	case "linuxfirefox-snap":
-		manifestpath = ".mozilla/native-messaging-hosts"
+		manifestpath = "snap/firefox/common/.mozilla/native-messaging-hosts"
 	default:
 		manifestpath = ""
 		fmt.Println("Error: Installer only intended for linux and mac. Exiting")
