@@ -36,6 +36,7 @@
 
 ### Updates
 
+* May 30, 2022: Please see: [Tiddlywiki - an Exit interview](https://ibnishak.github.io/digital-garden/Tiddlywiki%20-%20An%20exit%20interview)
 * April 27, 2020: Timimi now supports chrome, chromium, opera in addition to firefox
 * July 20, 2019: Thanks to the efforts by [@YakovL](https://github.com/YakovL), timimi has basic support for saving Tiddlywiki Classic too!
 
