@@ -32,6 +32,6 @@ chrome.runtime.onInstalled.addListener(details => {
   });
 });
 
-chrome.browserAction.onClicked.addListener(function() {
+chrome.action.onClicked.addListener(function() {
   chrome.runtime.openOptionsPage();
 });
